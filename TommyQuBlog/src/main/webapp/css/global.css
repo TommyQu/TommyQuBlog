@@ -1,0 +1,35 @@
+.form-control {
+	width: 90%;
+}
+
+.login-btn {
+	float: right;
+	margin-right: 20px;
+}
+
+.navbar-inverse .navbar-brand {
+	color: white;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+	color: white;
+}
+
+#sub-header {
+	background-image: url("../img/sub-header-background-img.png");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	width: 100%;
+    margin-top: -20px;
+    height: 200px;
+}
+
+#sub-header-title {
+	margin-top: 70px;
+	color: white;
+}
+
+#header-logo-img {
+	margin-left: 150px;
+    margin-top: 20px;
+}
