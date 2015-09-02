@@ -1,5 +1,6 @@
 package com.tommyqu.blog.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -37,19 +38,22 @@ public class PostDAOImpl implements PostDAO {
 	}
 
 	@Override
-	public void getAllPostsByUserId(User user) {
+	public List<Post> getAllPostsByUserId(Integer userId) {
+		List<Post> postList = new ArrayList<Post>();
 		try {
-			String hql = "from UserPost up where up.user = '"+user+"'";
+			String hql = "from UserPost up where up.user.userId = "+userId+"";
 //			StringBuffer sb = new StringBuffer("select p.postId, p.postTitle "
 //					+ "from Post as p, UserPost as up "
 //					+ "where up.upUserId")
 			Query query = this.getSession().createQuery(hql);
-			
-//			List<User> postList = query.list();
-			System.out.println(query.list().size());
+			List<UserPost> userPostList = query.list();
+			for(int i = 0; i < userPostList.size(); i++) {
+				postList.add(userPostList.get(i).getPost());
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return postList;
 	}
 
 }

@@ -23,18 +23,18 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public Boolean userLogin(String userLoginName, String userPwd) {
+	public User userLogin(String userLoginName, String userPwd) {
 		try {
 			String hql = "from User where userLoginName = '"+userLoginName+"' and userPwd = '"+userPwd+"' ";
 			Query query = this.getSession().createQuery(hql);
 			List<User> userList = query.list();
 			if(userList.size() != 0)
-				return true;
+				return userList.get(0);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
 		}
-		return false;
+		return null;
 	}
 
 }

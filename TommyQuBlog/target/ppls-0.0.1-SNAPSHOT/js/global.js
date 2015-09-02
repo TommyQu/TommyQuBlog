@@ -1,8 +1,28 @@
 /**
+ * Project: TommyQuBlog
+ * Comments: Global required javascript code
+ * JDK Version Used: JDK 1.7
+ * Author: Tommy Qu
+ * Created Date: 08/20/2015
+ * Modified By:
+ * Modified Date:
+ * Why is modified:
+ */
+//$(document).ready(function(){
+//	$("#sign-out-li").hide();
+//	$("#new-post-li").hide();
+//	alert("${sessionScope.user.userName}");
+//});
+/**
  * 
  */
 var reponseText, arr;
 var xmlhttp=null;
+
+$(document).ready(function(){
+//	$("#sign-out-li").hide();
+//	$("#new-post-li").hide();
+});
 
 function userLogin() {
 	var userLoginName = document.getElementById("user-login-name").value;
@@ -33,7 +53,12 @@ function state_change() {
 		reponseText = xmlhttp.responseText;
 		if(reponseText == "true") {
 			$("#loginModal").modal("hide");
+			$("#sign-up-li").hide();
+			$("#login-in-li").hide();
+			$("#sign-out-li").show();
+			$("#new-post-li").show();
 			alert("Login successfully!");
+			location.reload();
 		}
 		else
 			alert("Incorrect login name or password!");

@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.tommyqu.blog.dao.UserDAO;
+import com.tommyqu.blog.entity.User;
 import com.tommyqu.blog.service.UserService;
 
 @Service("userService")
@@ -19,7 +20,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Boolean userLogin(String userLoginName, String userPwd) {
+	public User userLogin(String userLoginName, String userPwd) {
 		return userDAO.userLogin(userLoginName, userPwd);
 	}
 

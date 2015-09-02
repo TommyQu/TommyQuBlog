@@ -1,9 +1,10 @@
 package com.tommyqu.blog.controller;
 
 import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,8 +24,7 @@ public class PostController {
 	private PostService postService;
 	
 	@RequestMapping(value="newPost.do")
-	public String newPost(String postTitle, String postContent, ModelMap modelMap) {
-		
+	public String newPost(HttpServletRequest request, String postTitle, String postContent, ModelMap modelMap) {
 		Date date=new Date();
 		Timestamp postTime = new Timestamp(date.getTime());
 		
@@ -34,19 +34,22 @@ public class PostController {
 		post.setPostTime(postTime);
 		post.setPostUpdateTime(postTime);
 		
-		User user = new User();
-		user.setUserId(1);
-		user.setUserLoginName("tommyqu1992@gmail.com");
-		user.setUserName("Tommy Qu");
+		User user = (User)request.getSession().getAttribute("user");
 		
 		UserPost userPost = new UserPost();
 		userPost.setUser(user);
 		userPost.setPost(post);
 		
-//		postService.addPost(post, userPost);
-		postService.getAllPostsByUserId(user);
+		postService.addPost(post, userPost);
 
 		return "/index";
 	}
-
+	
+//	@RequestMapping(value="showAllPosts.do")
+//	public String showAllPosts(HttpServletRequest request, String userId, ModelMap modelMap) {
+//		User user = (User)request.getSession().getAttribute("user");
+//		List<Post> postList = postService.getAllPostsByUserId(user.getUserId());
+//		System.out.println(postList.size());
+//		return "/index";
+//	}
 }

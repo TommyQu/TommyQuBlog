@@ -2,7 +2,9 @@ package com.tommyqu.blog.service;
 
 import org.hibernate.Session;
 
+import com.tommyqu.blog.entity.User;
+
 public interface UserService extends BaseService{
 	
-	Boolean userLogin(String userLoginName, String userPwd);
+	User userLogin(String userLoginName, String userPwd);
 }

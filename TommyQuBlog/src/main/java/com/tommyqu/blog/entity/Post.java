@@ -27,7 +27,6 @@ public class Post implements java.io.Serializable {
 	private String postContent;
 	private Timestamp postTime;
 	private Timestamp postUpdateTime;
-	private Set<PostCategory> postCategories = new HashSet<PostCategory>(0);
 	private Set<UserPost> userPosts = new HashSet<UserPost>(0);
 
 	// Constructors
@@ -47,13 +46,11 @@ public class Post implements java.io.Serializable {
 
 	/** full constructor */
 	public Post(String postTitle, String postContent, Timestamp postTime,
-			Timestamp postUpdateTime, Set<PostCategory> postCategories,
-			Set<UserPost> userPosts) {
+			Timestamp postUpdateTime, Set<UserPost> userPosts) {
 		this.postTitle = postTitle;
 		this.postContent = postContent;
 		this.postTime = postTime;
 		this.postUpdateTime = postUpdateTime;
-		this.postCategories = postCategories;
 		this.userPosts = userPosts;
 	}
 
@@ -103,15 +100,6 @@ public class Post implements java.io.Serializable {
 
 	public void setPostUpdateTime(Timestamp postUpdateTime) {
 		this.postUpdateTime = postUpdateTime;
-	}
-
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "post")
-	public Set<PostCategory> getPostCategories() {
-		return this.postCategories;
-	}
-
-	public void setPostCategories(Set<PostCategory> postCategories) {
-		this.postCategories = postCategories;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "post")

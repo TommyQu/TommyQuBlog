@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-inverse">
 	<div class="container-fluid">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -15,23 +15,34 @@
 				<li><a href="#">Page 2</a></li>
 				<li><a href="#">Page 3</a></li>
 			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li>
+			<ul class="nav navbar-nav navbar-right login-ul">
+				<li id="new-post-li">
 					<a href="page/showNewPostPage.do"><span class="glyphicon glyphicon-new-window"></span> New Post</a>
 				</li>
-				<li>
+				<li id="sign-up-li">
 					<a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
 				</li>
-				<li>
+				<li id="log-in-li">
 					<a href="#" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+				</li>
+				<li id="sign-out-li">
+					<a href="user/signOut.do"><span class="glyphicon glyphicon-user"></span> Sign Out</a>
+				</li>
+				<li id="login-userName-li">
+					<a href="#"><span></span> ${sessionScope.user.userName}</a>
 				</li>
 			</ul>
 		</div>
 	</div>
 </nav>
 
-<div class="container">
-	<h1>It's my daydream here!</h1>
+<div class="container" id="sub-header">
+	<div class="col-md-4">
+		<img alt="" src="img/header-logo.png" id="header-logo-img">
+	</div>
+	<div class="col-sm-8">
+		<h1 id="sub-header-title">It's my daydream here!</h1>
+	</div>
 </div>
 
 <!-- Login Popup Modal -->
@@ -44,18 +55,18 @@
         <h4 class="modal-title">User Login</h4>
       </div>
       <div class="modal-body">
-      	<form class="form-horizontal" role="form" action="user/login.do">
+      	<form class="form-horizontal" role="form" action="javascript:userLogin()">
 			<div class="form-group">
-				<label class="control-label col-sm-3" for="login-name">Login Name:</label>
+				<label class="control-label col-sm-3" for="user-login-name">Login Name:</label>
 				<div class="col-sm-9">
-					<input type="text" class="form-control" id="login-name"
+					<input type="text" class="form-control" id="user-login-name" name="userLoginName"
 						placeholder="Enter login name">
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-sm-3" for="pwd">Password:</label>
+				<label class="control-label col-sm-3" for="user-pwd">Password:</label>
 				<div class="col-sm-9">
-					<input type="password" class="form-control" id="pwd"
+					<input type="password" class="form-control" id="user-pwd" name="userPwd"
 						placeholder="Enter password">
 				</div>
 			</div>

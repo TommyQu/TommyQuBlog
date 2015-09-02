@@ -1,6 +1,9 @@
 package com.tommyqu.blog.service.impl;
 
+import java.util.List;
+
 import org.hibernate.Session;
+import org.jboss.logging.annotations.Pos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,8 +30,8 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public void getAllPostsByUserId(User user) {
-		postDAO.getAllPostsByUserId(user);
+	public List<Post> getAllPostsByUserId(Integer userId) {
+		return postDAO.getAllPostsByUserId(userId);
 	}
 
 }

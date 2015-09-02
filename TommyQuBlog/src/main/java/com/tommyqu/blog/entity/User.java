@@ -29,7 +29,6 @@ public class User implements java.io.Serializable {
 	private String userPwd;
 	private String userName;
 	private Set<UserPost> userPosts = new HashSet<UserPost>(0);
-	private Set<UserCategory> userCategories = new HashSet<UserCategory>(0);
 
 	// Constructors
 
@@ -46,12 +45,11 @@ public class User implements java.io.Serializable {
 
 	/** full constructor */
 	public User(String userLoginName, String userPwd, String userName,
-			Set<UserPost> userPosts, Set<UserCategory> userCategories) {
+			Set<UserPost> userPosts) {
 		this.userLoginName = userLoginName;
 		this.userPwd = userPwd;
 		this.userName = userName;
 		this.userPosts = userPosts;
-		this.userCategories = userCategories;
 	}
 
 	// Property accessors
@@ -100,15 +98,6 @@ public class User implements java.io.Serializable {
 
 	public void setUserPosts(Set<UserPost> userPosts) {
 		this.userPosts = userPosts;
-	}
-
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
-	public Set<UserCategory> getUserCategories() {
-		return this.userCategories;
-	}
-
-	public void setUserCategories(Set<UserCategory> userCategories) {
-		this.userCategories = userCategories;
 	}
 
 }

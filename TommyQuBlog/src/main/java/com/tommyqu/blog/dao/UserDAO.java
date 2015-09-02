@@ -1,7 +1,9 @@
 package com.tommyqu.blog.dao;
 
+import com.tommyqu.blog.entity.User;
+
 public interface UserDAO extends BaseDAO {
 	
-	Boolean userLogin(String userLoginName, String userPwd);
+	User userLogin(String userLoginName, String userPwd);
 	
 }

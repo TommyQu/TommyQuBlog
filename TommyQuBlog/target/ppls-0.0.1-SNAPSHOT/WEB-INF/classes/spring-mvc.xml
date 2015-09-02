@@ -43,5 +43,10 @@
 
 	<mvc:interceptors>
        <bean class="org.springframework.mobile.device.DeviceResolverHandlerInterceptor" />
+        <mvc:interceptor>
+       		<mvc:mapping path="/**"/>
+       		<bean id="loginInterceptor" class="com.tommyqu.blog.utils.LoginInterceptor">
+       		</bean>
+       </mvc:interceptor>
 	</mvc:interceptors>
 </beans>

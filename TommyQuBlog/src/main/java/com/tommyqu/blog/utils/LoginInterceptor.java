@@ -13,13 +13,16 @@ package com.tommyqu.blog.utils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import org.springframework.stereotype.Repository;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+@Repository
 public class LoginInterceptor implements HandlerInterceptor {
 	
-	private static final String[] IGNORE_URI = {"/view/index.jsp"};
+	private static final String[] IGNORE_URI = {"/page/showBlogPage.do", "/page/showIndexPage.do", "/user/login.do"};
 
 	@Override
 	public void afterCompletion(HttpServletRequest arg0,
@@ -37,12 +40,22 @@ public class LoginInterceptor implements HandlerInterceptor {
 	}
 
 	@Override
-	public boolean preHandle(HttpServletRequest arg0, HttpServletResponse arg1,
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
 			Object arg2) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
+		String requestUrl = request.getRequestURI().replace(request.getContextPath(), "");
+		for(int i = 0; i < IGNORE_URI.length; i++) {
+			if(requestUrl.contains(IGNORE_URI[i])) {
+				return true;
+			}
+		}
+		HttpSession session = request.getSession();
+		Object obj = session.getAttribute("user");
+		if(obj == null || "".equals(obj.toString())) {
+			response.sendRedirect("../page/showIndexPage.do");  
+			return false;
+		}
+		else 
+			return true;
 	}
-	
-	
 
 }

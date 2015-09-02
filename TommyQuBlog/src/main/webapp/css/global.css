@@ -27,9 +27,39 @@
 #sub-header-title {
 	margin-top: 70px;
 	color: white;
+	width: 400px;
 }
 
 #header-logo-img {
 	margin-left: 150px;
     margin-top: 20px;
+}
+
+@media screen and (max-width: 992px) {
+	#sub-header-title {
+	    margin-top: -80px;
+    	margin-left: 350px;
+	}
+}
+
+@media screen and (max-width: 850px) {
+	#header-logo-img {
+		margin-left: 100px;
+	}
+	
+	#sub-header-title {
+    	margin-left: 300px;
+	}
+	   
+}
+
+@media screen and (max-width: 800px) {
+	#header-logo-img {
+		margin-left: 50px;
+	}
+	
+	#sub-header-title {
+    	margin-left: 250px;
+	}
+	   
 }

@@ -16,27 +16,22 @@
 				<li><a href="#">Page 3</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right login-ul">
-				<li>
+				<li id="new-post-li">
 					<a href="page/showNewPostPage.do"><span class="glyphicon glyphicon-new-window"></span> New Post</a>
 				</li>
-				<li>
+				<li id="sign-up-li">
 					<a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
 				</li>
-				<li>
+				<li id="log-in-li">
 					<a href="#" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-log-in"></span> Login</a>
 				</li>
 				<li id="sign-out-li">
-					<a href="#"><span class="glyphicon glyphicon-user"></span> Sign Out</a>
+					<a href="user/signOut.do"><span class="glyphicon glyphicon-user"></span> Sign Out</a>
+				</li>
+				<li id="login-userName-li">
+					<a href="#"><span></span> ${sessionScope.user.userName}</a>
 				</li>
 			</ul>
-<!-- 			<ul class="nav navbar-nav navbar-right logout-ul">
-				<li>
-					<p id="login-user-name"></p>
-				</li>
-				<li>
-					<a href="#"><span class="glyphicon glyphicon-log-out"></span> Log Out</a>
-				</li>
-			</ul> -->
 		</div>
 	</div>
 </nav>
