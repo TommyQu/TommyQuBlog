@@ -16,12 +16,15 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.alibaba.fastjson.JSON;
 import com.tommyqu.blog.entity.Post;
+import com.tommyqu.blog.entity.PostInfo;
+import com.tommyqu.blog.entity.PostSimpleInfo;
 import com.tommyqu.blog.entity.User;
 import com.tommyqu.blog.service.PostService;
 
@@ -33,21 +36,27 @@ public class PageController {
 	private PostService postService;
 	
 	@RequestMapping(value="showIndexPage.do")
-	public String showIndexPage(ModelMap model) {
+	public String showIndexPage(ModelMap modelMap) {
 		return "/index";
 	}
 	
 	@RequestMapping(value="showBlogPage.do")
 	public String showBlogPage(ModelMap modelMap) {
-		List<Post> postList = postService.getAllPostsByUserId(1);
-		String postListJson = JSON.toJSONString(postList);
-//		modelMap.addAttribute("postListJson", postListJson);
-		System.out.println(postListJson);
+		List<PostSimpleInfo> postSimpleInfoList = postService.getAllPostsSimpleInfoByUserId(1);
+		String postSimpleInfoListJson = JSON.toJSONString(postSimpleInfoList);
+		modelMap.addAttribute("postSimpleInfoListJson", postSimpleInfoListJson);
 		return "/blog";
 	}
 	
 	@RequestMapping(value="showNewPostPage.do")
-	public String showNewPostPage(ModelMap model) {
+	public String showNewPostPage(ModelMap modelMap) {
 		return "/newPost";
+	}
+	
+	@RequestMapping(value="showSinglePostPage.do")
+	public String showSinglePostPage(Integer postId, ModelMap modelMap) {
+		PostInfo postInfo = postService.getPostInfoByPostId(postId);
+		modelMap.addAttribute("postInfo", postInfo);
+		return "/singlePost";
 	}
 }

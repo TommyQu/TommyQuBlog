@@ -20,8 +20,26 @@ var reponseText, arr;
 var xmlhttp=null;
 
 $(document).ready(function(){
-//	$("#sign-out-li").hide();
-//	$("#new-post-li").hide();
+	$(".navbar-nav > li").hover(
+		function(){
+			$(this).css({
+				"background-color":"#222",
+				"font-size":"20px"
+			});
+//			$(this).css(
+//			{  
+//			      "filter": "alpha(opacity=50)",  
+//			      "-moz-opacity": "0.5",  
+//			      "-khtml-opacity": "0.5",  
+//			      "opacity": "0.5"  
+//			});
+			
+		}, function(){
+			$(this).css({
+				"background-color":"#222",
+				"font-size":"initial"
+			});
+	});
 });
 
 function userLogin() {

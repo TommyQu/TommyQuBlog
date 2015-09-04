@@ -30,6 +30,7 @@
 		<property name="maxPoolSize" value="20" />
 		
 		<property name="acquireIncrement" value="5" />
+		
 	</bean>
 
 	<!-- Hibernate SessionFactory Configuration-->

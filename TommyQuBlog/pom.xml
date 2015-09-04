@@ -1,10 +1,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>ppls</groupId>
-  <artifactId>ppls</artifactId>
+  <groupId>TommyQuBlog</groupId>
+  <artifactId>TommyQuBlog</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
-  <name>ppls</name>
+  <name>TommyQuBlog</name>
   <description/>
   <properties>
     <hibernate.version>4.3.8.Final</hibernate.version>

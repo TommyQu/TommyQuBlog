@@ -15,6 +15,16 @@
 	color: white;
 }
 
+.list-group-item-text {
+	font-size: 12px;
+	margin-top: 10px;
+	color: #999999;
+}
+
+.post-subtitle {
+	color: #999999;
+}
+
 #sub-header {
 	background-image: url("../img/sub-header-background-img.png");
 	background-repeat: no-repeat;
@@ -62,4 +72,10 @@
     	margin-left: 250px;
 	}
 	   
+}
+
+@media (min-width: 768px) {
+	.navbar {
+   		border-radius: 0;
+	}
 }

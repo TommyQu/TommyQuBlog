@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.tommyqu.blog.dao.PostDAO;
 import com.tommyqu.blog.entity.Post;
+import com.tommyqu.blog.entity.PostInfo;
+import com.tommyqu.blog.entity.PostSimpleInfo;
 import com.tommyqu.blog.entity.User;
 import com.tommyqu.blog.entity.UserPost;
 import com.tommyqu.blog.service.PostService;
@@ -30,8 +32,13 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public List<Post> getAllPostsByUserId(Integer userId) {
-		return postDAO.getAllPostsByUserId(userId);
+	public List<PostSimpleInfo> getAllPostsSimpleInfoByUserId(Integer userId) {
+		return postDAO.getAllPostsSimpleInfoByUserId(userId);
+	}
+
+	@Override
+	public PostInfo getPostInfoByPostId(Integer postId) {
+		return postDAO.getPostInfoByPostId(postId);
 	}
 
 }
