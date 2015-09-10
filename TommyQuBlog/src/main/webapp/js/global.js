@@ -23,8 +23,9 @@ $(document).ready(function(){
 	$(".navbar-nav > li").hover(
 		function(){
 			$(this).css({
-				"background-color":"#222",
-				"font-size":"20px"
+				"background-color": "#222",
+				"font-size": "18px",
+//				"box-shadow": "inset 0 0 100px 100px rgba(255, 255, 255, 0.1)"
 			});
 //			$(this).css(
 //			{  

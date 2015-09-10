@@ -12,8 +12,8 @@
 			<ul class="nav navbar-nav">
 				<li><a href="page/showIndexPage.do">Home</a></li>
 				<li><a href="page/showBlogPage.do">Blog</a></li>
-				<li><a href="#">Page 2</a></li>
-				<li><a href="#">Page 3</a></li>
+				<li><a href="#">Gallery</a></li>
+				<li><a href="#">About Me</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right login-ul">
 				<li id="new-post-li">
