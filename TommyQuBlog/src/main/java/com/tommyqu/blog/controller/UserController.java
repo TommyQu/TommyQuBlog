@@ -34,6 +34,6 @@ public class UserController {
 		request.getSession().removeAttribute("user");
 		request.getSession().invalidate();
 //		System.out.println(request.getRequestURI());
-		return "/index";
+		return "redirect:/page/showIndexPage.do";
 	}
 }

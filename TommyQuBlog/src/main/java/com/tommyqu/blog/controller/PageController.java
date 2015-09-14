@@ -59,4 +59,9 @@ public class PageController {
 		modelMap.addAttribute("postInfo", postInfo);
 		return "/singlePost";
 	}
+	
+	@RequestMapping(value="showAboutMe.do")
+	public String showAboutMe(ModelMap modelMap) {
+		return "/aboutMe";
+	}
 }

@@ -16,11 +16,6 @@
 </head>
 <body>
 	<%@ include file="global/header.jsp"%>
-	<div class="container">
-		<h2>${postInfo.postTitle}</h2>
-		<p class="post-subtitle" style="white-space:pre">By: ${postInfo.userName}    On: ${postInfo.postTime}</p>
-		<input type="text" value="3" class="field left" readonly>
-	</div>
 	<%@ include file="global/footer.jsp"%>
 	<script type="text/javascript" src="<%=path%>/js/global.js"></script>
 </body>

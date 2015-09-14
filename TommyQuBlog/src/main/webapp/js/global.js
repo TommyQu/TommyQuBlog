@@ -8,14 +8,7 @@
  * Modified Date:
  * Why is modified:
  */
-//$(document).ready(function(){
-//	$("#sign-out-li").hide();
-//	$("#new-post-li").hide();
-//	alert("${sessionScope.user.userName}");
-//});
-/**
- * 
- */
+
 var reponseText, arr;
 var xmlhttp=null;
 
@@ -24,21 +17,15 @@ $(document).ready(function(){
 		function(){
 			$(this).css({
 				"background-color": "#222",
-				"font-size": "18px",
-//				"box-shadow": "inset 0 0 100px 100px rgba(255, 255, 255, 0.1)"
+				"font-size": "16px",
+				"text-shadow": "1px 1px 2px black, 0 0 25px white, 0 0 15px white"
 			});
-//			$(this).css(
-//			{  
-//			      "filter": "alpha(opacity=50)",  
-//			      "-moz-opacity": "0.5",  
-//			      "-khtml-opacity": "0.5",  
-//			      "opacity": "0.5"  
-//			});
 			
 		}, function(){
 			$(this).css({
 				"background-color":"#222",
-				"font-size":"initial"
+				"font-size":"14px",
+				"text-shadow": ""
 			});
 	});
 });

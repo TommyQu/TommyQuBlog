@@ -9,10 +9,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
 	<base href="<%=basePath%>">
 	<title>Tommy Qu's Blog</title>
-	<%@ include file="linker.jsp"%>
+	<%@ include file="global/linker.jsp"%>
 </head>
 <body>
-	<%@ include file="header.jsp"%>
+	<%@ include file="global/header.jsp"%>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4">
@@ -30,6 +30,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 				<div class="intro-text-div">
 					<h3 class="intro-text-h3">What I Do</h3>
+					<p>Mobile and web development</p>
 				</div>
 			</div>
 			<div class="col-md-4">
@@ -38,27 +39,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 				<div class="intro-text-div">
 					<h3 class="intro-text-h3">What I Like</h3>
+					<p>Singing, Playing computer games</p>
 				</div>
 			</div>
 		</div>
 	</div>
+	<%@ include file="global/footer.jsp"%>
 	<script type="text/javascript" src="<%=path%>/js/global.js"></script>
 	<script type="text/javascript" src="<%=path%>/js/index.js"></script>
-	<%@ include file="footer.jsp"%>
 </body>
+<%@ include file="global/footerLoginJS.jsp"%>
 <script type="text/javascript">
-$(document).ready(function(){
-	var user = "${sessionScope.user}";
-	if(user) {
-		$("#sign-up-li").hide();
-		$("#log-in-li").hide();
-		$("#sign-out-li").show();
-		$("#new-post-li").show();
-	}
-	else {
-		$("#sign-out-li").hide();
-		$("#new-post-li").hide();
-	}
-});
 </script>
 </html>

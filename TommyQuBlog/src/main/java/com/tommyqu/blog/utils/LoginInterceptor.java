@@ -22,7 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Repository
 public class LoginInterceptor implements HandlerInterceptor {
 	
-	private static final String[] IGNORE_URI = {"/page/showBlogPage.do", "/page/showIndexPage.do", "/page/showSinglePostPage.do", "/user/login.do"};
+	private static final String[] IGNORE_URI = {"/page/showBlogPage.do", "/page/showIndexPage.do", "/page/showSinglePostPage.do", "/page/showAboutMe.do", "/user/login.do", "/user/signOut.do"};
 
 	@Override
 	public void afterCompletion(HttpServletRequest arg0,

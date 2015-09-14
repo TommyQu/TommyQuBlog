@@ -6,14 +6,14 @@
 				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">Tommy Qu's Blog</a>
+			<a class="navbar-brand" id="navbar-title" href="#">Tommy Qu's Blog</a>
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
 				<li><a href="page/showIndexPage.do">Home</a></li>
 				<li><a href="page/showBlogPage.do">Blog</a></li>
 				<li><a href="#">Gallery</a></li>
-				<li><a href="#">About Me</a></li>
+				<li><a href="page/showAboutMe.do">About Me</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right login-ul">
 				<li id="new-post-li">

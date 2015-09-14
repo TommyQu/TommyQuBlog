@@ -4,6 +4,7 @@
 	<comment></comment>
 	<projects>
 		<project>TommyQuBlog</project>
+		<project>ShareYourCuisineServer</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

@@ -11,11 +11,11 @@
 <head>
 	<base href="<%=basePath%>">
 	<title>New Post</title>
-	<%@ include file="linker.jsp"%>
+	<%@ include file="global/linker.jsp"%>
 	<link rel="stylesheet" href="<%=path%>/css/newPost.css">
 </head>
 <body>
-	<%@ include file="header.jsp"%>
+	<%@ include file="global/header.jsp"%>
 	<div class="container">
 		<h2>New post:</h2>
 		<form class="form-horizontal" role="form" id="new-post-form" action="post/newPost.do">
@@ -45,21 +45,10 @@
 		</form>
 		<%-- <p>${sessionScope.user.userName}</p> --%>
 	</div>
+	<%@ include file="global/footer.jsp"%>
 	<script type="text/javascript" src="<%=path%>/js/global.js"></script>
 </body>
+<%@ include file="global/footerLoginJS.jsp"%>
 <script type="text/javascript">
-$(document).ready(function() {
-	var user = "${sessionScope.user}";
-	if(user) {
-		$("#sign-up-li").hide();
-		$("#log-in-li").hide();
-		$("#sign-out-li").show();
-		$("#new-post-li").show();
-	}
-	else {
-		$("#sign-out-li").hide();
-		$("#new-post-li").hide();
-	}
-});
 </script>
 </html>

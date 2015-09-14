@@ -9,33 +9,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
 	<base href="<%=basePath%>">
 	<title>View Blogs</title>
-	<%@ include file="linker.jsp"%>
+	<%@ include file="global/linker.jsp"%>
+	<link rel="stylesheet" href="<%=path%>/css/blog.css">
 </head>
 <body>
-	<%@ include file="header.jsp"%>
+	<%@ include file="global/header.jsp"%>
 	<div class="container">
 		<h2>Blog List</h2>
 		<div class="list-group" id="post-list-group">
-<!-- 			<a href="#" class="list-group-item active">First item</a>
-			<a href="#" class="list-group-item">Second item</a>
-			<a href="#" class="list-group-item">Third item</a> -->
+		</div>
+		<div class="page-div">
+			<ul class="pagination page-ul">
+				<li class="active"><a href="#">1</a></li>
+				<li><a href="#">2</a></li>
+				<li><a href="#">3</a></li>
+				<li><a href="#">4</a></li>
+				<li><a href="#">5</a></li>
+			</ul>
 		</div>
 	</div>
+	<%@ include file="global/footer.jsp"%>
 	<script type="text/javascript" src="<%=path%>/js/global.js"></script>
 </body>
+<%@ include file="global/footerLoginJS.jsp"%>
 <script type="text/javascript">
 $(document).ready(function(){
-	var user = "${sessionScope.user}";
-	if(user) {
-		$("#sign-up-li").hide();
-		$("#log-in-li").hide();
-		$("#sign-out-li").show();
-		$("#new-post-li").show();
-	}
-	else {
-		$("#sign-out-li").hide();
-		$("#new-post-li").hide();
-	}
 	var postSimpleInfoListJson = ${postSimpleInfoListJson};
 	var postListGroup = document.getElementById("post-list-group");
 	for(var i=0;i<postSimpleInfoListJson.length;i++) {
