@@ -11,7 +11,7 @@
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
 				<li><a href="page/showIndexPage.do">Home</a></li>
-				<li><a href="page/showBlogPage.do">Blog</a></li>
+				<li><a href="page/showBlogPage.do?pageNum=1">Blog</a></li>
 				<li><a href="#">Gallery</a></li>
 				<li><a href="page/showAboutMe.do">About Me</a></li>
 			</ul>

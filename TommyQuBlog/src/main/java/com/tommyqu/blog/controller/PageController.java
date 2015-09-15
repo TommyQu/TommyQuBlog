@@ -26,6 +26,7 @@ import com.tommyqu.blog.entity.Post;
 import com.tommyqu.blog.entity.PostInfo;
 import com.tommyqu.blog.entity.PostSimpleInfo;
 import com.tommyqu.blog.entity.User;
+import com.tommyqu.blog.service.CategoryService;
 import com.tommyqu.blog.service.PostService;
 
 @Controller
@@ -35,16 +36,27 @@ public class PageController {
 	@Autowired
 	private PostService postService;
 	
+	@Autowired
+	private CategoryService categoryService;
+	
 	@RequestMapping(value="showIndexPage.do")
 	public String showIndexPage(ModelMap modelMap) {
 		return "/index";
 	}
 	
 	@RequestMapping(value="showBlogPage.do")
-	public String showBlogPage(ModelMap modelMap) {
-		List<PostSimpleInfo> postSimpleInfoList = postService.getAllPostsSimpleInfoByUserId(1);
+	public String showBlogPage(Integer pageNum, ModelMap modelMap) {
+		List<PostSimpleInfo> postSimpleInfoList = postService.getAllPostsSimpleInfoByUserId(1, pageNum);
 		String postSimpleInfoListJson = JSON.toJSONString(postSimpleInfoList);
+		
+		List<String> categoryNameList = categoryService.getAllCategoriesByUserId(1);
+		String categoryNameListJson = JSON.toJSONString(categoryNameList);
+		
+		Integer totalPageNum = postService.getPostNumByUserId(1)/10+1;
+		modelMap.addAttribute("totalPageNum", totalPageNum);
+		modelMap.addAttribute("currentPageNum", pageNum);
 		modelMap.addAttribute("postSimpleInfoListJson", postSimpleInfoListJson);
+		modelMap.addAttribute("categoryNameListJson", categoryNameListJson);
 		return "/blog";
 	}
 	

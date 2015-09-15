@@ -25,7 +25,7 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public User userLogin(String userLoginName, String userPwd) {
 		try {
-			String hql = "from User where userLoginName = '"+userLoginName+"' and userPwd = '"+userPwd+"' ";
+			String hql = "FROM User WHERE userLoginName = '"+userLoginName+"' AND userPwd = '"+userPwd+"' ";
 			Query query = this.getSession().createQuery(hql);
 			List<User> userList = query.list();
 			if(userList.size() != 0)

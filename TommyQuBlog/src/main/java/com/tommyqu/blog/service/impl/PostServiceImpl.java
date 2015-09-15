@@ -32,13 +32,18 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public List<PostSimpleInfo> getAllPostsSimpleInfoByUserId(Integer userId) {
-		return postDAO.getAllPostsSimpleInfoByUserId(userId);
+	public List<PostSimpleInfo> getAllPostsSimpleInfoByUserId(Integer userId, Integer pageNum) {
+		return postDAO.getAllPostsSimpleInfoByUserId(userId, pageNum);
 	}
 
 	@Override
 	public PostInfo getPostInfoByPostId(Integer postId) {
 		return postDAO.getPostInfoByPostId(postId);
+	}
+
+	@Override
+	public Integer getPostNumByUserId(Integer userId) {
+		return postDAO.getPostNumByUserId(userId);
 	}
 
 }

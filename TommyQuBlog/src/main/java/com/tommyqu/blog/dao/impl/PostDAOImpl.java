@@ -42,14 +42,19 @@ public class PostDAOImpl implements PostDAO {
 	}
 
 	@Override
-	public List<PostSimpleInfo> getAllPostsSimpleInfoByUserId(Integer userId) {
+	public List<PostSimpleInfo> getAllPostsSimpleInfoByUserId(Integer userId, Integer pageNum) {
 		List<PostSimpleInfo> postSimpleInfoList = new ArrayList<PostSimpleInfo>();
+		Integer start = (pageNum-1)*10;
+		Integer end = pageNum*10;
 		try {
-			String hql = "from UserPost up where up.user.userId = "+userId+"";
+			String hql = "FROM UserPost up WHERE up.user.userId = "+userId+" "
+					+ "ORDER BY up.post.postUpdateTime DESC";
 //			StringBuffer sb = new StringBuffer("select p.postId, p.postTitle "
 //					+ "from Post as p, UserPost as up "
 //					+ "where up.upUserId")
 			Query query = this.getSession().createQuery(hql);
+			query.setFirstResult(start);
+			query.setMaxResults(10);
 			List<UserPost> userPostList = query.list();
 			for(int i = 0; i < userPostList.size(); i++) {
 				PostSimpleInfo postSimpleInfo = new PostSimpleInfo();
@@ -70,7 +75,7 @@ public class PostDAOImpl implements PostDAO {
 	public PostInfo getPostInfoByPostId(Integer postId) {
 		PostInfo postInfo = new PostInfo();
 		try {
-			String hql = "from UserPost up where up.post.postId = "+postId+"";
+			String hql = "FROM UserPost up WHERE up.post.postId = "+postId+"";
 			Query query = this.getSession().createQuery(hql);
 			List<UserPost> userPostList = query.list();
 			postInfo.setPostId(userPostList.get(0).getPost().getPostId());
@@ -84,6 +89,19 @@ public class PostDAOImpl implements PostDAO {
 			e.printStackTrace();
 		}
 		return postInfo;
+	}
+
+	@Override
+	public Integer getPostNumByUserId(Integer userId) {
+		Integer postNum = 0;
+		try {
+			String hql = "FROM UserPost up WHERE up.user.userId = "+userId+"";
+			Query query = this.getSession().createQuery(hql);
+			postNum = query.list().size();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return postNum;
 	}
 
 }

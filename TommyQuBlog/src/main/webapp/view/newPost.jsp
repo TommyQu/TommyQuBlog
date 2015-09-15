@@ -13,6 +13,7 @@
 	<title>New Post</title>
 	<%@ include file="global/linker.jsp"%>
 	<link rel="stylesheet" href="<%=path%>/css/newPost.css">
+	<link rel="stylesheet" href="<%=path%>/css/bootstrap-multiselect.css">
 </head>
 <body>
 	<%@ include file="global/header.jsp"%>
@@ -28,7 +29,11 @@
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="category-input" id="category-label">Categories:</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="category-input">
+					<!-- <input type="text" class="form-control" id="category-input"> -->
+					<select id="category-select" multiple="multiple">
+						<option value="1">Option 1</option>
+						<option value="2">Option 6</option>
+					</select>
 				</div>
 			</div>
 			<div class="form-group">
@@ -47,8 +52,15 @@
 	</div>
 	<%@ include file="global/footer.jsp"%>
 	<script type="text/javascript" src="<%=path%>/js/global.js"></script>
+	<script type="text/javascript" src="<%=path%>/js/bootstrap-multiselect.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$("#category-select").multiselect({
+			maxHeight:200,
+			numberDisplayed:5
+		});
+	});
+	</script>
 </body>
 <%@ include file="global/footerLoginJS.jsp"%>
-<script type="text/javascript">
-</script>
 </html>

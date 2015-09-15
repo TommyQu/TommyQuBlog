@@ -30,26 +30,6 @@ body {
 	color: #999999;
 }
 
-.intro-text-div {
-    height: 250px;
-    background-color: white;
-    margin-top: 80px;
-    border: 2px solid #dbdbdb;
-    border-radius: 10px;
-    text-align: center;
-}
-
-.intro-text-h3 {
-	padding-top: 20px;
-	font-family: "Pacifico", cursive;
-}
-
-.intro-icon-div {
-    margin-top: 30px;
-    margin-bottom: -110px;
-    text-align: center;
-}
-
 .footer {
 	background-color: #222;
 	bottom: 0;

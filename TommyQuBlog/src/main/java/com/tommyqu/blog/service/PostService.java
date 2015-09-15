@@ -11,6 +11,7 @@ import com.tommyqu.blog.entity.UserPost;
 public interface PostService extends BaseService {
 	
 	Boolean addPost(Post post, UserPost userPost);
-	List<PostSimpleInfo> getAllPostsSimpleInfoByUserId(Integer userId);
+	List<PostSimpleInfo> getAllPostsSimpleInfoByUserId(Integer userId, Integer pageNum);
 	PostInfo getPostInfoByPostId(Integer postId);
+	Integer getPostNumByUserId(Integer userId);
 }

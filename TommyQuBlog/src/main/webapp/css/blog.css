@@ -1,3 +1,26 @@
 .page-div {
 	text-align: center;
 }
+
+/* #category-list-group {
+	float: left;
+	width: 150px;
+}
+
+#blog-list-group {
+	margin-left: 200px;
+}
+
+
+@media screen and (max-width: 520px) {
+	#category-list-group {
+		float: none;
+		width: 100%;
+	}
+	#blog-list-group {
+ 		margin-left: 0px;
+	}
+	
+
+	   
+} */
