@@ -12,6 +12,7 @@
 	<base href="<%=basePath%>">
 	<title>New Post</title>
 	<%@ include file="global/linker.jsp"%>
+	<script src="//cdn.ckeditor.com/4.5.3/standard/ckeditor.js"></script>
 	<link rel="stylesheet" href="<%=path%>/css/newPost.css">
 	<link rel="stylesheet" href="<%=path%>/css/bootstrap-multiselect.css">
 </head>
@@ -39,12 +40,13 @@
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="post-content">Post content:</label>
 				<div class="col-sm-10">
-					<textarea class="form-control" rows="5" id="post-content" name="postContent"></textarea>
+					<textarea name="postContent" id="post-content" rows="10" cols="80">
+					</textarea>
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
-					<button type="submit" class="btn btn-default">Submit</button>
+					<button type="submit" class="btn btn-primary">Submit</button>
 				</div>
 			</div>
 		</form>
@@ -54,11 +56,15 @@
 	<script type="text/javascript" src="<%=path%>/js/global.js"></script>
 	<script type="text/javascript" src="<%=path%>/js/bootstrap-multiselect.js"></script>
 	<script type="text/javascript">
+	CKEDITOR.replace( "post-content", {
+		uiColor: "#F5F5F5"
+	});
+	$("#category-select").multiselect({
+		maxHeight:200,
+		numberDisplayed:5
+	});
 	$(document).ready(function(){
-		$("#category-select").multiselect({
-			maxHeight:200,
-			numberDisplayed:5
-		});
+
 	});
 	</script>
 </body>

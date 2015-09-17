@@ -15,9 +15,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <body>
 	<%@ include file="global/header.jsp"%>
 	<div class="container">
+		<br>
 		<div class="row">
 			<div class="col-md-3">
-				<h2>Category List</h2>
+					<h2 id="category-h2"><img alt="" src="img/category.png"> Category List</h2>
 				<div class="list-group" id="category-list-group">
 					<a href="#" class="list-group-item active">All</a>
 				</div>
