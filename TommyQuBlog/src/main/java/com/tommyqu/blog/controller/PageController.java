@@ -22,6 +22,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.alibaba.fastjson.JSON;
+import com.tommyqu.blog.entity.Category;
+import com.tommyqu.blog.entity.CategoryInfo;
 import com.tommyqu.blog.entity.Post;
 import com.tommyqu.blog.entity.PostInfo;
 import com.tommyqu.blog.entity.PostSimpleInfo;
@@ -49,19 +51,23 @@ public class PageController {
 		List<PostSimpleInfo> postSimpleInfoList = postService.getAllPostsSimpleInfoByUserId(1, pageNum);
 		String postSimpleInfoListJson = JSON.toJSONString(postSimpleInfoList);
 		
-		List<String> categoryNameList = categoryService.getAllCategoriesByUserId(1);
-		String categoryNameListJson = JSON.toJSONString(categoryNameList);
+		List<CategoryInfo> categoryInfoList = categoryService.getAllCategoryInfoByUserId(1);
+		String categoryInfoListJson = JSON.toJSONString(categoryInfoList);
 		
 		Integer totalPageNum = postService.getPostNumByUserId(1)/10+1;
 		modelMap.addAttribute("totalPageNum", totalPageNum);
 		modelMap.addAttribute("currentPageNum", pageNum);
 		modelMap.addAttribute("postSimpleInfoListJson", postSimpleInfoListJson);
-		modelMap.addAttribute("categoryNameListJson", categoryNameListJson);
+		modelMap.addAttribute("categoryInfoListJson", categoryInfoListJson);
 		return "/blog";
 	}
 	
 	@RequestMapping(value="showNewPostPage.do")
-	public String showNewPostPage(ModelMap modelMap) {
+	public String showNewPostPage(HttpServletRequest request, ModelMap modelMap) {
+		User user = (User)request.getSession().getAttribute("user");
+		List<CategoryInfo> categoryInfoList = categoryService.getAllCategoryInfoByUserId(user.getUserId());
+		String categoryInfoListJson = JSON.toJSONString(categoryInfoList);
+		modelMap.addAttribute("categoryInfoListJson", categoryInfoListJson);
 		return "/newPost";
 	}
 	

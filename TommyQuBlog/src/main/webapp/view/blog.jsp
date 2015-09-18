@@ -42,8 +42,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <%@ include file="global/footerLoginJS.jsp"%>
 <script type="text/javascript">
 $(document).ready(function(){
+	
 	var postSimpleInfoListJson = ${postSimpleInfoListJson};
-	var categoryNameListJson = ${categoryNameListJson};
+	var categoryInfoListJson = ${categoryInfoListJson};
 	var totalPageNum = ${totalPageNum};
 	var currentPageNum = ${currentPageNum};
 	
@@ -54,8 +55,8 @@ $(document).ready(function(){
 	for(var i=0;i<postSimpleInfoListJson.length;i++) {
 		blogListGroup.innerHTML+="<a href=\"page/showSinglePostPage.do?postId="+postSimpleInfoListJson[i].postId+"\" class=\"list-group-item\"><h4 class=\"list-group-item-heading\">"+postSimpleInfoListJson[i].postTitle+"</h4><p class=\"list-group-item-text\">By: "+postSimpleInfoListJson[i].userName+"    On: "+postSimpleInfoListJson[i].postTime+"</p></a>";
 	}
-	for(var i=0;i<categoryNameListJson.length;i++) {
-		categoryListGroup.innerHTML+="<a href=\"#\" class=\"list-group-item\">"+categoryNameListJson[i]+"</a>";
+	for(var i=0;i<categoryInfoListJson.length;i++) {
+		categoryListGroup.innerHTML+="<a href=\"#\" class=\"list-group-item\">"+categoryInfoListJson[i].categoryName+"</a>";
 	}
 	for(var i=2;i<=totalPageNum;i++) {
 		pageUl.innerHTML+="<li><a href=\"page/showBlogPage.do?pageNum="+i+"\">"+i+"</a></li>";
@@ -63,6 +64,7 @@ $(document).ready(function(){
 	
 	//Active current page li
 	$("#page-ul li:nth-child("+currentPageNum+")").addClass("active");
+
 	
 });
 </script>

@@ -2,8 +2,10 @@ package com.tommyqu.blog.service;
 
 import java.util.List;
 
+import com.tommyqu.blog.entity.CategoryInfo;
+
 public interface CategoryService extends BaseService{
 	
-	List<String> getAllCategoriesByUserId(Integer userId);
+	List<CategoryInfo> getAllCategoryInfoByUserId(Integer userId);
 	
 }

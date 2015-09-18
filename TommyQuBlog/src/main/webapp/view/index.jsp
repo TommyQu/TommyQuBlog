@@ -16,7 +16,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<%@ include file="global/header.jsp"%>
 	<div class="container">
 		<div class="row">
-			<div class="col-md-4">
+			<div class="col-md-4 intro-div-1">
 				<div class="intro-icon-div">
 					<img alt="" src="img/person.png" height="82" width="82">
 				</div>

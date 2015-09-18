@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.tommyqu.blog.dao.CategoryDAO;
 import com.tommyqu.blog.entity.Category;
+import com.tommyqu.blog.entity.CategoryInfo;
 import com.tommyqu.blog.entity.UserCategory;
 
 @Repository("categoryDAO")
@@ -25,19 +26,22 @@ public class CategoryDAOImpl implements CategoryDAO{
 	}
 
 	@Override
-	public List<String> getAllCategoriesByUserId(Integer userId) {
-		List<String> categoryNameList = new ArrayList<String>();
+	public List<CategoryInfo> getAllCategoryInfoByUserId(Integer userId) {
+		List<CategoryInfo> categoryInfoList = new ArrayList<CategoryInfo>();
 		try {
 			String hql = "FROM UserCategory uc WHERE uc.user.userId = 1";
 			Query query = this.getSession().createQuery(hql);
 			List<UserCategory> userCategoryList = query.list();
 			for(int i = 0; i < userCategoryList.size(); i++) {
-				categoryNameList.add(userCategoryList.get(i).getCategory().getCategoryName());
+				CategoryInfo categoryInfo = new CategoryInfo();
+				categoryInfo.setCategoryId(userCategoryList.get(i).getCategory().getCategoryId());
+				categoryInfo.setCategoryName(userCategoryList.get(i).getCategory().getCategoryName());
+				categoryInfoList.add(categoryInfo);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return categoryNameList;
+		return categoryInfoList;
 	}
 
 }

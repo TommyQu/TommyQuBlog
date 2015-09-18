@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.tommyqu.blog.entity.Post;
 import com.tommyqu.blog.entity.User;
@@ -24,7 +25,7 @@ public class PostController {
 	private PostService postService;
 	
 	@RequestMapping(value="newPost.do")
-	public String newPost(HttpServletRequest request, String postTitle, String postContent, ModelMap modelMap) {
+	public @ResponseBody Boolean newPost(HttpServletRequest request, String postTitle, String postContent, String categorySelect, ModelMap modelMap) {
 		Date date=new Date();
 		Timestamp postTime = new Timestamp(date.getTime());
 		
@@ -40,9 +41,12 @@ public class PostController {
 		userPost.setUser(user);
 		userPost.setPost(post);
 		
-		postService.addPost(post, userPost);
-
-		return "/index";
+		try {
+			postService.addPost(post, userPost);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 	
 //	@RequestMapping(value="showAllPosts.do")

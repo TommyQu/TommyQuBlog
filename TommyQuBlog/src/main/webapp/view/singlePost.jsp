@@ -12,7 +12,7 @@
 	<base href="<%=basePath%>">
 	<title>Single Post</title>
 	<%@ include file="global/linker.jsp"%>
-	<script src="//cdn.ckeditor.com/4.5.3/standard/ckeditor.js"></script>
+	<script src="http://cdn.ckeditor.com/4.5.2/standard-all/ckeditor.js"></script>
 	<link rel="stylesheet" href="<%=path%>/css/singlePost.css">
 </head>
 <body>
@@ -32,14 +32,20 @@
 </body>
 <%@ include file="global/footerLoginJS.jsp"%>
 <script type="text/javascript">
-CKEDITOR.replace( "post-content", {
-	uiColor: "#F5F5F5"
-});
+
 $(document).ready(function(){
+	CKEDITOR.replace( "post-content", {
+		uiColor: "#F5F5F5",
+	});
+	
+	var contentHight = $("#post-content").prop("scrollHeight")-100;
 	CKEDITOR.on('instanceReady', function() {
 		$("#cke_1_top").remove();
 		$("#cke_1_bottom").remove();
+		$("#cke_1_contents").height(contentHight);;
 	});
+	
 });
+
 </script>
 </html>
