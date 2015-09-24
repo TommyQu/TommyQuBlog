@@ -11,7 +11,7 @@
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
 				<li><a href="page/showIndexPage.do"> Home</a></li>
-				<li><a href="page/showBlogPage.do?pageNum=1"> Blog</a></li>
+				<li><a href="page/showBlogPage.do?pageNum=1&categoryId="> Blog</a></li>
 				<li><a href="#"> Gallery</a></li>
 				<li><a href="page/showAboutMe.do"> About Me</a></li>
 			</ul>
@@ -37,11 +37,13 @@
 </nav>
 
 <div class="container" id="sub-header">
+	<div class="row">
 	<div class="col-md-4">
 		<img alt="" src="img/header-logo.png" id="header-logo-img">
 	</div>
-	<div class="col-sm-8">
+	<div class="col-md-8">
 		<h1 id="sub-header-title">It's my daydream here!</h1>
+	</div>
 	</div>
 </div>
 

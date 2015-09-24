@@ -6,14 +6,14 @@
 				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">Tommy Qu's Blog</a>
+			<a class="navbar-brand" id="navbar-title" href="#">Tommy Qu's Blog</a>
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
-				<li><a href="page/showIndexPage.do">Home</a></li>
-				<li><a href="page/showBlogPage.do">Blog</a></li>
-				<li><a href="#">Page 2</a></li>
-				<li><a href="#">Page 3</a></li>
+				<li><a href="page/showIndexPage.do"> Home</a></li>
+				<li><a href="page/showBlogPage.do?pageNum=1"> Blog</a></li>
+				<li><a href="#"> Gallery</a></li>
+				<li><a href="page/showAboutMe.do"> About Me</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right login-ul">
 				<li id="new-post-li">
@@ -79,8 +79,8 @@
 			</div> -->
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
-					<button type="button" class="btn btn-default login-btn" data-dismiss="modal">Cancel</button>
-					<button type="submit" class="btn btn-default login-btn" id="login-submit-btn">Submit</button>
+					<button type="button" class="btn btn-danger login-btn" data-dismiss="modal">Cancel</button>
+					<button type="submit" class="btn btn-primary login-btn" id="login-submit-btn">Submit</button>
 				</div>
 			</div>
 		</form>

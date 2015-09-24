@@ -47,14 +47,16 @@ public class PageController {
 	}
 	
 	@RequestMapping(value="showBlogPage.do")
-	public String showBlogPage(Integer pageNum, ModelMap modelMap) {
-		List<PostSimpleInfo> postSimpleInfoList = postService.getAllPostsSimpleInfoByUserId(1, pageNum);
+	public String showBlogPage(Integer pageNum, Integer categoryId, ModelMap modelMap) {
+		if(pageNum == null)
+			pageNum = 1;
+		List<PostSimpleInfo> postSimpleInfoList = postService.getAllPostsSimpleInfoByCategoryId(categoryId, pageNum);
 		String postSimpleInfoListJson = JSON.toJSONString(postSimpleInfoList);
 		
 		List<CategoryInfo> categoryInfoList = categoryService.getAllCategoryInfoByUserId(1);
 		String categoryInfoListJson = JSON.toJSONString(categoryInfoList);
 		
-		Integer totalPageNum = postService.getPostNumByUserId(1)/10+1;
+		Integer totalPageNum = postService.getPostNumByCategoryId(categoryId)/10+1;
 		modelMap.addAttribute("totalPageNum", totalPageNum);
 		modelMap.addAttribute("currentPageNum", pageNum);
 		modelMap.addAttribute("postSimpleInfoListJson", postSimpleInfoListJson);
@@ -80,6 +82,11 @@ public class PageController {
 	
 	@RequestMapping(value="showAboutMe.do")
 	public String showAboutMe(ModelMap modelMap) {
+		return "/aboutMe";
+	}
+	
+	@RequestMapping(value="showCategorizedPage.do")
+	public String showCategorizedPage(Integer categoryId, ModelMap modelMap) {
 		return "/aboutMe";
 	}
 }

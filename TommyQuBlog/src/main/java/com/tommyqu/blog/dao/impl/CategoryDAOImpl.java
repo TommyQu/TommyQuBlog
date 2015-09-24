@@ -44,4 +44,18 @@ public class CategoryDAOImpl implements CategoryDAO{
 		return categoryInfoList;
 	}
 
+	@Override
+	public Category getCategoryById(Integer categoryId) {
+		Category category = new Category();
+		try {
+			String hql = "FROM Category c WHERE c.categoryId = "+categoryId+"";
+			Query query = this.getSession().createQuery(hql);
+			List<Category> categoryList = query.list();
+			category = categoryList.get(0);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return category;
+	}
+
 }

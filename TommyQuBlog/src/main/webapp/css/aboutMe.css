@@ -1,0 +1,15 @@
+#sec-about-row {
+	margin-left: 5px;
+}
+
+#about-intro-div {
+	margin-top: -5px;
+	margin-left: -50px;
+}
+
+@media screen and (max-width: 991px) {
+	#about-intro-div {
+		margin-top: -140px;
+    	margin-left: 200px;
+	}
+}

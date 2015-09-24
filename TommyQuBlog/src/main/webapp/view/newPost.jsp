@@ -51,7 +51,6 @@
 	</div>
 	<%@ include file="global/footer.jsp"%>
 	<script type="text/javascript" src="<%=path%>/js/global.js"></script>
-	<script type="text/javascript" src="<%=path%>/js/newPost.js"></script>
 	<script type="text/javascript" src="<%=path%>/js/bootstrap-multiselect.js"></script>
 	<script type="text/javascript">
 	CKEDITOR.replace( "post-content", {
@@ -66,7 +65,7 @@
 	$(document).ready(function(){
 		var categoryInfoListJson = ${categoryInfoListJson};
  		var categorySelect = document.getElementById("category-select");
-		for(var i=0;i<categoryInfoListJson.length;i++) {
+		for(var i=1;i<categoryInfoListJson.length;i++) {
 			var option = document.createElement("option");
 			option.value = categoryInfoListJson[i].categoryId;
 			option.text = categoryInfoListJson[i].categoryName;
@@ -77,8 +76,8 @@
 			numberDisplayed:5
 		});
 	});
-	
 	</script>
+	<script type="text/javascript" src="<%=path%>/js/newPost.js"></script>
 </body>
 <%@ include file="global/footerLoginJS.jsp"%>
 </html>

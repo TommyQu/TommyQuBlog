@@ -3,9 +3,17 @@ var xmlhttp=null;
 
 function newPost() {
 	var postTitle = document.getElementById("post-title").value;
-	var categorySelect = document.getElementById("category-select").value;
+	var categorySelect = document.getElementById("category-select");
 	var postContent = document.getElementById("post-content").value;
+	var categoryString = "";
 	
+	for(var i=0;i<categorySelect.length;i++) {
+		if(categorySelect.options[i].selected) {
+			categoryString += categorySelect.options[i].value+",";
+		}
+	}
+	if(categoryString == "")
+		categoryString += "1";
 	if(postTitle == "" || postContent == "")
 		alert("Please fill required fields!");
 	else {
@@ -17,7 +25,7 @@ function newPost() {
 		}
 		if (xmlhttp!=null) {
 			xmlhttp.onreadystatechange=state_change;
-			xmlhttp.open("post","post/newPost.do?postTitle="+postTitle+"&postContent="+postContent+"&categorySelect="+categorySelect,false);
+			xmlhttp.open("post","post/newPost.do?postTitle="+postTitle+"&postContent="+postContent+"&categoryString="+categoryString,false);
 			xmlhttp.send();
 		}
 		else {
@@ -31,7 +39,7 @@ function state_change() {
 		reponseText = xmlhttp.responseText;
 		if(reponseText == "true") {
 			alert("Create new post successfully!");
-			window.location.href = "page/showBlogPage.do?pageNum=1";
+			window.location.href = "page/showBlogPage.do?pageNum=1&categoryId=";
 		}
 		else
 			alert("Create new post failed!");

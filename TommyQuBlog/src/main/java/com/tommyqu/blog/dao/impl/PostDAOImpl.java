@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.tommyqu.blog.dao.PostDAO;
 import com.tommyqu.blog.entity.Post;
+import com.tommyqu.blog.entity.PostCategory;
 import com.tommyqu.blog.entity.PostInfo;
 import com.tommyqu.blog.entity.PostSimpleInfo;
 import com.tommyqu.blog.entity.User;
@@ -30,10 +31,13 @@ public class PostDAOImpl implements PostDAO {
 	}
 
 	@Override
-	public Boolean addPost(Post post, UserPost userPost) {
+	public Boolean addPost(Post post, UserPost userPost, List<PostCategory> postCategoryList) {
 		try {
 			this.sessionFactory.getCurrentSession().save(post);
 			this.sessionFactory.getCurrentSession().save(userPost);
+			for(int i=0;i<postCategoryList.size();i++) {
+				this.sessionFactory.getCurrentSession().save(postCategoryList.get(i));
+			}
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -42,27 +46,32 @@ public class PostDAOImpl implements PostDAO {
 	}
 
 	@Override
-	public List<PostSimpleInfo> getAllPostsSimpleInfoByUserId(Integer userId, Integer pageNum) {
+	public List<PostSimpleInfo> getAllPostsSimpleInfoByCategoryId(Integer categoryId, Integer pageNum) {
 		List<PostSimpleInfo> postSimpleInfoList = new ArrayList<PostSimpleInfo>();
 		Integer start = (pageNum-1)*10;
 		Integer end = pageNum*10;
 		try {
-			String hql = "FROM UserPost up WHERE up.user.userId = "+userId+" "
-					+ "ORDER BY up.post.postUpdateTime DESC";
-//			StringBuffer sb = new StringBuffer("select p.postId, p.postTitle "
-//					+ "from Post as p, UserPost as up "
-//					+ "where up.upUserId")
+			String hql;
+			if(categoryId == null) {
+				hql = "FROM PostCategory pc "
+						+ "GROUP BY pc.post.postId "
+						+ "ORDER BY pc.post.postUpdateTime DESC";
+			}
+			else {
+				hql = "FROM PostCategory pc WHERE pc.category.categoryId = "+categoryId+" "
+						+ "ORDER BY pc.post.postUpdateTime DESC";
+			}
 			Query query = this.getSession().createQuery(hql);
 			query.setFirstResult(start);
 			query.setMaxResults(10);
-			List<UserPost> userPostList = query.list();
-			for(int i = 0; i < userPostList.size(); i++) {
+			List<PostCategory> postCategoryList = query.list();
+			for(int i = 0; i < postCategoryList.size(); i++) {
 				PostSimpleInfo postSimpleInfo = new PostSimpleInfo();
-				postSimpleInfo.setPostId(userPostList.get(i).getPost().getPostId());
-				postSimpleInfo.setPostTitle(userPostList.get(i).getPost().getPostTitle());
-				postSimpleInfo.setPostTime(userPostList.get(i).getPost().getPostTime().toString());
-				postSimpleInfo.setPostUpdateTime(userPostList.get(i).getPost().getPostUpdateTime().toString());
-				postSimpleInfo.setUserName(userPostList.get(i).getUser().getUserName());
+				postSimpleInfo.setPostId(postCategoryList.get(i).getPost().getPostId());
+				postSimpleInfo.setPostTitle(postCategoryList.get(i).getPost().getPostTitle());
+				postSimpleInfo.setPostTime(postCategoryList.get(i).getPost().getPostTime().toString());
+				postSimpleInfo.setPostUpdateTime(postCategoryList.get(i).getPost().getPostUpdateTime().toString());
+				postSimpleInfo.setUserName("Tommy Qu");
 				postSimpleInfoList.add(postSimpleInfo);
 			}
 		} catch (Exception e) {
@@ -92,10 +101,16 @@ public class PostDAOImpl implements PostDAO {
 	}
 
 	@Override
-	public Integer getPostNumByUserId(Integer userId) {
+	public Integer getPostNumByCategoryId(Integer categoryId) {
 		Integer postNum = 0;
 		try {
-			String hql = "FROM UserPost up WHERE up.user.userId = "+userId+"";
+			String hql;
+			if(categoryId == null) {
+				hql = "FROM UserPost up WHERE up.user.userId = 1";
+			}
+			else {
+				hql = "FROM PostCategory pc WHERE pc.category.categoryId = "+categoryId+"";
+			}
 			Query query = this.getSession().createQuery(hql);
 			postNum = query.list().size();
 		} catch (Exception e) {

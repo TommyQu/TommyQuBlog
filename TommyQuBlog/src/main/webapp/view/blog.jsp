@@ -20,7 +20,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="col-md-3">
 					<h2 id="category-h2"><img alt="" src="img/category.png"> Category List</h2>
 				<div class="list-group" id="category-list-group">
-					<a href="#" class="list-group-item active">All</a>
+					<a href="page/showBlogPage.do?pageNum=1&categoryId=" class="list-group-item active" id="all-list-item">All</a>
 				</div>
 			</div>
 			<div class="col-md-9">
@@ -32,16 +32,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<div class="page-div">
 			<ul class="pagination page-ul" id="page-ul">
-				<li><a href="page/showBlogPage.do?pageNum=1">1</a></li>
+				<li><a href="page/showBlogPage.do?pageNum=1&categoryId=">1</a></li>
 			</ul>
 		</div>
 	</div>
 	<%@ include file="global/footer.jsp"%>
 	<script type="text/javascript" src="<%=path%>/js/global.js"></script>
+	<script type="text/javascript" src="<%=path%>/js/blog.js"></script>
 </body>
 <%@ include file="global/footerLoginJS.jsp"%>
 <script type="text/javascript">
 $(document).ready(function(){
+	
+	var query = window.location.search.substring(1);
+	query = query.substring(query.indexOf("&"), query.length);
+	var categoryId = query.substring(query.indexOf("=")+1, query.length);
 	
 	var postSimpleInfoListJson = ${postSimpleInfoListJson};
 	var categoryInfoListJson = ${categoryInfoListJson};
@@ -55,12 +60,22 @@ $(document).ready(function(){
 	for(var i=0;i<postSimpleInfoListJson.length;i++) {
 		blogListGroup.innerHTML+="<a href=\"page/showSinglePostPage.do?postId="+postSimpleInfoListJson[i].postId+"\" class=\"list-group-item\"><h4 class=\"list-group-item-heading\">"+postSimpleInfoListJson[i].postTitle+"</h4><p class=\"list-group-item-text\">By: "+postSimpleInfoListJson[i].userName+"    On: "+postSimpleInfoListJson[i].postTime+"</p></a>";
 	}
+	
+	//Based on category active according list item
 	for(var i=0;i<categoryInfoListJson.length;i++) {
-		categoryListGroup.innerHTML+="<a href=\"#\" class=\"list-group-item\">"+categoryInfoListJson[i].categoryName+"</a>";
+		if(categoryInfoListJson[i].categoryId == categoryId) {
+			$("#all-list-item").removeClass("active");
+			categoryListGroup.innerHTML+="<a href=\"page/showBlogPage.do?pageNum=1&categoryId="+categoryInfoListJson[i].categoryId+"\" class=\"list-group-item active\">"+categoryInfoListJson[i].categoryName+"</a>";
+		}
+		else {
+			categoryListGroup.innerHTML+="<a href=\"page/showBlogPage.do?pageNum=1&categoryId="+categoryInfoListJson[i].categoryId+"\" class=\"list-group-item\">"+categoryInfoListJson[i].categoryName+"</a>";
+		}
 	}
 	for(var i=2;i<=totalPageNum;i++) {
 		pageUl.innerHTML+="<li><a href=\"page/showBlogPage.do?pageNum="+i+"\">"+i+"</a></li>";
 	}
+	
+	//Active the a specific category list item
 	
 	//Active current page li
 	$("#page-ul li:nth-child("+currentPageNum+")").addClass("active");

@@ -22,9 +22,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 				<div class="intro-text-div">
 					<h3 class="intro-text-h3">Who I Am</h3>
-					<p class="intro-text-p">Hello, my name is Haotian Qu, you can call me Tommy. Currently, 
-					I'm pursuing my master's degree of Computer Science in The George Washington University. 
-					I like programming. Now, I'm focusing on mobile development.</p>
+					<p class="intro-text-p">Hello, my name is Haotian Qu, you can call me Tommy. 
+					I'm a programmer in the computer science industry. </p>
 				</div>
 			</div>
 			<div class="col-md-4">
@@ -33,10 +32,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 				<div class="intro-text-div">
 					<h3 class="intro-text-h3">What I Do</h3>
-					<p class="intro-text-p">I have been studying programming for 5 years. I learned a lot of
-					programming languages during the past years such as C, C++, C#, Java, HTML, CSS, JavaScript.
-					Java is my favorite. Although I have more experience in web development, I'm eager to learn
-					more about mobile development.</p>
+					<p class="intro-text-p">I'm proficient in web and mobile development. Java and Objective-C 
+					are my favorite programming languages.</p>
 				</div>
 			</div>
 			<div class="col-md-4">
@@ -45,10 +42,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 				<div class="intro-text-div">
 					<h3 class="intro-text-h3">What I Like</h3>
-					<p class="intro-text-p">Singing is my favorite hobby. When I was in college, I joined our
-					college's chorus. I'm the bass minister. Playing computer games is another my favorite hobby.
-					I like Warcraft3, Dota, Diablo. Speaking of Warcraft3, I have a deep emotion with this game.
-					I have been playing it for about 10 years.</p>
+					<p class="intro-text-p">Singing, playing computer games, playing basketball and table tennis, 
+					cooking delicious food.</p>
 				</div>
 			</div>
 		</div>

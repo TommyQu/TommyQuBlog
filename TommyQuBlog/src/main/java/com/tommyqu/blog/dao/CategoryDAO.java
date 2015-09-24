@@ -8,4 +8,5 @@ import com.tommyqu.blog.entity.CategoryInfo;
 public interface CategoryDAO extends BaseDAO {
 	
 	List<CategoryInfo> getAllCategoryInfoByUserId(Integer userId);
+	Category getCategoryById(Integer categoryId);
 }

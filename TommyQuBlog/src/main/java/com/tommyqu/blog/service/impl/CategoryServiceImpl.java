@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.tommyqu.blog.dao.CategoryDAO;
+import com.tommyqu.blog.entity.Category;
 import com.tommyqu.blog.entity.CategoryInfo;
 import com.tommyqu.blog.service.CategoryService;
 
@@ -24,6 +25,11 @@ public class CategoryServiceImpl implements CategoryService {
 	@Override
 	public List<CategoryInfo> getAllCategoryInfoByUserId(Integer userId) {
 		return categoryDAO.getAllCategoryInfoByUserId(userId);
+	}
+
+	@Override
+	public Category getCategoryById(Integer categoryId) {
+		return categoryDAO.getCategoryById(categoryId);
 	}
 
 

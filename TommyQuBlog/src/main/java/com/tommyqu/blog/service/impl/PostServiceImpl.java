@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.tommyqu.blog.dao.PostDAO;
 import com.tommyqu.blog.entity.Post;
+import com.tommyqu.blog.entity.PostCategory;
 import com.tommyqu.blog.entity.PostInfo;
 import com.tommyqu.blog.entity.PostSimpleInfo;
 import com.tommyqu.blog.entity.User;
@@ -27,13 +28,13 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public Boolean addPost(Post post, UserPost userPost) {
-		return postDAO.addPost(post, userPost);
+	public Boolean addPost(Post post, UserPost userPost, List<PostCategory> postCategoryList) {
+		return postDAO.addPost(post, userPost, postCategoryList);
 	}
 
 	@Override
-	public List<PostSimpleInfo> getAllPostsSimpleInfoByUserId(Integer userId, Integer pageNum) {
-		return postDAO.getAllPostsSimpleInfoByUserId(userId, pageNum);
+	public List<PostSimpleInfo> getAllPostsSimpleInfoByCategoryId(Integer categoryId, Integer pageNum) {
+		return postDAO.getAllPostsSimpleInfoByCategoryId(categoryId, pageNum);
 	}
 
 	@Override
@@ -42,8 +43,8 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public Integer getPostNumByUserId(Integer userId) {
-		return postDAO.getPostNumByUserId(userId);
+	public Integer getPostNumByCategoryId(Integer categoryId) {
+		return postDAO.getPostNumByCategoryId(categoryId);
 	}
 
 }

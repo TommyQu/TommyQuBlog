@@ -8,14 +8,7 @@
  * Modified Date:
  * Why is modified:
  */
-//$(document).ready(function(){
-//	$("#sign-out-li").hide();
-//	$("#new-post-li").hide();
-//	alert("${sessionScope.user.userName}");
-//});
-/**
- * 
- */
+
 var reponseText, arr;
 var xmlhttp=null;
 
@@ -23,21 +16,16 @@ $(document).ready(function(){
 	$(".navbar-nav > li").hover(
 		function(){
 			$(this).css({
-				"background-color":"#222",
-				"font-size":"20px"
+				"background-color": "#222",
+				"font-size": "16px",
+				"text-shadow": "1px 1px 2px black, 0 0 25px white, 0 0 15px white"
 			});
-//			$(this).css(
-//			{  
-//			      "filter": "alpha(opacity=50)",  
-//			      "-moz-opacity": "0.5",  
-//			      "-khtml-opacity": "0.5",  
-//			      "opacity": "0.5"  
-//			});
 			
 		}, function(){
 			$(this).css({
 				"background-color":"#222",
-				"font-size":"initial"
+				"font-size":"14px",
+				"text-shadow": ""
 			});
 	});
 });
