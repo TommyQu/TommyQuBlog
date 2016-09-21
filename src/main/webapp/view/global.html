@@ -1,0 +1,141 @@
+    <!--  Nav bar -->
+    <nav class="navbar navbar-inverse tqb-nav">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" id="navbar-title" href="#">Tommy Qu's
+					Blog</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li><a href="#/app/home"> Home</a>
+                    </li>
+                    <li><a href="#/app/blog">
+							Blog</a>
+                    </li>
+                    <li><a href="#"> Gallery</a>
+                    </li>
+                    <li><a href="page/showAboutMe.do"> About Me</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right login-ul">
+                    <li ng-show="userCookie != null"><a href="#/app/newBlog"><span
+							class="glyphicon glyphicon-new-window"></span> New Blog</a>
+                    </li>
+                    <li ng-show="userCookie == null"><a href="#" data-toggle="modal" data-target="#signUpModal"><span
+							class="glyphicon glyphicon-user"></span> Sign Up</a>
+                    </li>
+                    <li ng-show="userCookie == null"><a href="#" data-toggle="modal" data-target="#loginModal"><span
+							class="glyphicon glyphicon-log-in"></span> Login</a>
+                    </li>
+                    <li ng-show="userCookie != null"><a href="#" ng-click="signOut()"><span
+							class="glyphicon glyphicon-user"></span> Sign Out</a>
+                    </li>
+                    <li ng-show="userCookie.id =='57e2c7abadd8589d0a068c89'"><a href="#/app/admin"><span
+							class="glyphicon glyphicon-sunglasses"></span> Admin</a>
+                    </li>
+                    <li id="login-userName-li"><a href="#"><span></span>
+							{{userCookie.firstName}} {{userCookie.lastName}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+	<!-- Sub Header -->
+	<div class="row sub-header ">
+				<div class="col-md-6" id="sub-header-img-div">
+			<img src="img/avatar.png" width="150px" class="img-responsive center-block" alt="Responsive image">
+		</div>
+		<div class="col-md-6" id="sub-header-text-div">
+			<h2>Welcome to my blog</h2>
+		</div>
+	</div>
+	
+	<div ui-view="mainContent"></div>
+	
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Login</h4>
+                </div>
+                <div class="modal-body">
+                    <form name="loginForm" ng-submit="userLogin(loginForm)">
+                        <div class="form-group">
+                            <label for="email">Email address</label>
+                            <input type="email" class="form-control" id="email" placeholder="Email" ng-model="user.email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd">Password</label>
+                            <input type="password" class="form-control" id="pwd" placeholder="Password" ng-model="user.pwd" required>
+                        </div>
+                        <br>
+                        <div class="row">
+                        	<div class="col-md-6"><button type="submit" class="btn btn-lg btn-primary">Submit</button></div>
+                        	<div class="col-md-6"><button type="button" class="btn btn-lg btn-default" data-dismiss="modal" aria-label="Close">Cancel</button></div>
+                        </div>         
+                    </form>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+        <!-- Sign up Modal -->
+    <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="signUpModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Sign Up</h4>
+                </div>
+                <div class="modal-body">
+                    <form name="signUpForm" ng-submit="signUp(signUpForm)">
+                        <div class="form-group">
+                            <label for="email">Email address</label>
+                            <input type="email" class="form-control" id="email" placeholder="Email" ng-model="user.email" required>
+                        </div>
+                        <div class="form-group">
+                        	<div class="row">
+                        		<div class="col-md-6">
+                        			<label for="first-name">First Name</label>
+                            		<input type="text" class="form-control" id="first-name" placeholder="First Name" ng-model="user.firstName" required>
+                        		</div>
+                        		<div class="col-md-6">
+                        			<label for="last-name">Last Name</label>
+                            		<input type="text" class="form-control" id="first-name" placeholder="Last Name" ng-model="user.lastName" required>
+                        		</div>
+                        	</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd">Password</label>
+                            <input type="password" class="form-control" id="pwd" placeholder="Password" ng-model="user.pwd" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="re-pwd">Re-enter Password</label>
+                            <input type="password" class="form-control" id="re-pwd" placeholder="Re-enter Password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="bio">Bio</label>
+                            <textarea rows="4" cols="50" class="form-control" id="bio" placeholder="Bio" ng-model="user.bio"></textarea>
+                        </div>
+                        <br>
+                        <div class="row">
+                        	<div class="col-md-6"><button type="submit" class="btn btn-lg btn-primary">Submit</button></div>
+                        	<div class="col-md-6"><button type="button" class="btn btn-lg btn-default" data-dismiss="modal" aria-label="Close">Cancel</button></div>
+                        </div>         
+                    </form>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>

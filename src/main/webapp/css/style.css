@@ -1,0 +1,25 @@
+.tqb-nav {
+	margin-bottom: 0px;
+}
+
+.tqb-container {
+	margin-top: 30px;	
+}
+
+.sub-header {
+	background-image: url("../img/sub-header-background-img.jpg");
+	background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 250px;
+}
+
+#sub-header-img-div {
+	margin-top: 40px;
+}
+
+#sub-header-text-div {
+	color: white;
+	margin-top: 80px;
+	margin-left: -100px;
+}
