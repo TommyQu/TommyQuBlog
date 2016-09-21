@@ -1,7 +1,7 @@
 # TommyQuBlog
 Personal Blog
 
-Front-end: AngualrJS
+Front-end: AngularJS, Bootstrap
 
 Back-end: SpringMVC
 
