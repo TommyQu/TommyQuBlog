@@ -1,9 +1,14 @@
 .tqb-nav {
 	margin-bottom: 0px;
+	border-radius: 0px;
 }
 
 .tqb-container {
 	margin-top: 30px;	
+}
+
+.tqb-footer {
+	background-color: #f9f9f9;	
 }
 
 .sub-header {
@@ -12,6 +17,8 @@
     background-repeat: no-repeat;
     background-position: center center;
     height: 250px;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
 #sub-header-img-div {

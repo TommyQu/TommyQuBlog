@@ -1,5 +1,7 @@
 package com.tommyqu.blog.controllers;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -19,18 +21,18 @@ public class UserController {
 	IUserService userService;
 	
 	@RequestMapping(value="login.do")
-	public @ResponseBody String login(String email, String pwd, ModelMap modelMap) {
+	public @ResponseBody String login(String email, String pwd, HttpServletRequest request) {
 		User user = userService.login(email, pwd);
 		if(user != null) {
 			String userJSON = JSON.toJSONString(user);
-			modelMap.addAttribute("userJSON", userJSON);
+			request.getSession().setAttribute("user", user);
 			return userJSON;
 		}
 		return "fail";
 	}
 
 	@RequestMapping(value="signUp.do")
-	public @ResponseBody String signUp(String userJson, ModelMap modelMap) {
+	public @ResponseBody String signUp(String userJson) {
 		User user = new User();
 		JSONObject userObj = JSON.parseObject(userJson);
 		user.setEmail(userObj.getString("email"));
@@ -40,5 +42,12 @@ public class UserController {
 		user.setBio(userObj.getString("bio"));
 		user.setAvatar("avatar");
 		return userService.signUp(user);
+	}
+	
+	@RequestMapping(value="checkSession.do")
+	public @ResponseBody String checkSession(String email, HttpServletRequest request) {
+		if(request.getSession().getAttribute("user") == null)
+			return "fail";
+		return "success";
 	}
 }

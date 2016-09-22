@@ -17,11 +17,11 @@
                     </li>
                     <li><a href="#"> Gallery</a>
                     </li>
-                    <li><a href="page/showAboutMe.do"> About Me</a>
+                    <li><a href="#/app/aboutMe"> About Me</a>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right login-ul">
-                    <li ng-show="userCookie != null"><a href="#/app/newBlog"><span
+                    <li ng-show="userCookie.id == '57e2c7abadd8589d0a068c89'"><a href="#/app/newBlog"><span
 							class="glyphicon glyphicon-new-window"></span> New Blog</a>
                     </li>
                     <li ng-show="userCookie == null"><a href="#" data-toggle="modal" data-target="#signUpModal"><span
@@ -56,6 +56,16 @@
 	
 	<div ui-view="mainContent"></div>
 	
+	<div class="row tqb-footer">
+		<br>
+		<div class="col-md-9">
+		</div>
+		<div class="col-md-3">
+			<p><i class="fa fa-map-marker" aria-hidden="true"></i> Falls Church, Virginia, 22043</p>
+			<p>Copyright By Tommy Qu (2016)</p>
+		</div>
+		<br>
+	</div>
     <!-- Login Modal -->
     <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel">
         <div class="modal-dialog" role="document">

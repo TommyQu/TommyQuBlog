@@ -1,0 +1,11 @@
+<div class="container tqb-container">
+		<h2>{{blog.title}}</h2>
+		<hr>
+		<p>Created By: {{blog.createdBy.firstName}} {{blog.createdBy.lastName}} Last Updated on: {{blog.lastUpdatedAt}}</p>
+		<textarea name="content" id="content" rows="10" cols="80" readonly>
+			{{blog.content}}
+		</textarea>
+		<br>
+		<h3>Comments</h3>
+		<p ng-show="blog.comments == null">No comments yet.</p>
+</div>

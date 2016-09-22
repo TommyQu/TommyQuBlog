@@ -1,24 +1,19 @@
 <div class="container tqb-container">
-	<div class="row">
-		<div class="col-md-3">
-			<h4>Categories</h4>
-			<div class="list-group">
-  <a href="#" class="list-group-item active">
-    All
-  </a>
-  <a href="#" class="list-group-item" ng-repeat="category in categories">{{category.content}}</a>
-</div>
-		</div>
-		<div class="col-md-9">
-		<div class="list-group">
-  <a href="#" class="list-group-item active">
-    Cras justo odio
-  </a>
-  <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-  <a href="#" class="list-group-item">Morbi leo risus</a>
-  <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-  <a href="#" class="list-group-item">Vestibulum at eros</a>
-</div>
-		</div>
-	</div>
+    <div class="row">
+        <div class="col-md-3">
+            <h4>Categories</h4>
+            <div class="list-group">
+                <a href="#" class="list-group-item active">All</a>
+                <a href="#" class="list-group-item" ng-repeat="category in categories">{{category.content}}</a>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="list-group">
+                <a href class="list-group-item" ng-repeat="blog in blogs" ng-click="toOneBlogPage(blog.id)">
+                    <h3 class="list-group-item-heading">{{blog.title}}</h3>
+                    <p class="list-group-item-text">{{blog.lastUpdatedAt}}</p>
+                </a>
+            </div>
+        </div>
+    </div>
 </div>

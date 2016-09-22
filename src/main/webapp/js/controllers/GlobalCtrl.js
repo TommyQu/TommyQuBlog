@@ -1,6 +1,34 @@
 app.controller('GlobalCtrl', function($scope, $state, $http, $cookies, $window) {
     $scope.user = {};
     $scope.userCookie = $cookies.getObject('userCookie');
+
+    function checkSession() {
+        var settings = {
+                method: 'POST',
+                url: baseUrl + "/user/checkSession.do",
+                params: {
+                    email: $scope.user.email,
+                }
+            }
+        $http(settings).then(function(response) {
+            if (response.data != null && response.data != "") {
+            	if(response.data == "fail") {
+                	$cookies.remove("userCookie");
+                	$scope.userCookie = null;
+                	alert("Your session expires, please login again!");
+                	$state.go("app.home");
+                	return false;
+            	}
+            } else {
+            	alert("Network error!");
+            }
+        }, function(error) {
+            alert("Error:" + JSON.stringify(error.data));
+        });
+        return true;
+    }
+
+    
     $scope.userLogin = function() {
         var settings = {
             method: 'POST',

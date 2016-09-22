@@ -1,4 +1,4 @@
-var app = angular.module('BlogApp', ['ui.router', 'ngCookies', 'ngCkeditor']);
+var app = angular.module('BlogApp', ['ui.router', 'ngCookies']);
 app.config(function($stateProvider, $urlRouterProvider) {
   //
   // For any unmatched url, redirect to /state1ico
@@ -28,6 +28,25 @@ app.config(function($stateProvider, $urlRouterProvider) {
     	  'mainContent': {
     		  templateUrl: "view/blog.html",
     		  controller: "BlogCtrl"
+    	  }
+      }
+    })
+
+    .state('app.oneBlog', {
+      url: "/oneBlog/:id",
+      views: {
+    	  'mainContent': {
+    		  templateUrl: "view/oneBlog.html",
+    		  controller: "OneBlogCtrl"
+    	  }
+      }
+    })
+    
+    .state('app.aboutMe', {
+      url: "/aboutMe",
+      views: {
+    	  'mainContent': {
+    		  templateUrl: "view/aboutMe.html"
     	  }
       }
     })
