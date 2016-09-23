@@ -55,4 +55,8 @@ public class BlogController {
 		return blogJson;
 	}
 	
+	@RequestMapping(value="deleteBlog.do")
+	public @ResponseBody String deleteBlog(String id) {
+		return blogService.deleteBlog(id);
+	}
 }

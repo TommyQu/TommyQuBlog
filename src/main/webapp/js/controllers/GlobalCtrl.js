@@ -2,7 +2,7 @@ app.controller('GlobalCtrl', function($scope, $state, $http, $cookies, $window) 
     $scope.user = {};
     $scope.userCookie = $cookies.getObject('userCookie');
 
-    function checkSession() {
+    $scope.checkSession = function() {
         var settings = {
                 method: 'POST',
                 url: baseUrl + "/user/checkSession.do",
@@ -86,6 +86,7 @@ app.controller('GlobalCtrl', function($scope, $state, $http, $cookies, $window) 
     };
     
     $scope.signOut = function() {
+    	$scope.checkSession();
     	$cookies.remove("userCookie");
     	$window.location.reload();
     };

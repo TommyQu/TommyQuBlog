@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
+import com.tommyqu.blog.entities.Blog;
 import com.tommyqu.blog.entities.Category;
 import com.tommyqu.blog.entities.User;
 import com.tommyqu.blog.repositories.IAdminRepository;
@@ -42,6 +43,19 @@ public class AdminRepositoryImpl implements IAdminRepository {
 		} catch (Exception e) {
 			System.out.println(e.getMessage().toString());
 			return null;
+		}
+	}
+
+	@Override
+	public String deleteCategory(String id) {
+		try {
+			Query query = new Query();
+			query.addCriteria(Criteria.where("id").is(id));
+			mongoTemplate.remove(query, Category.class, "category");
+			return "success";
+		} catch (Exception e) {
+			System.out.println(e.getMessage().toString());
+			return "fail";
 		}
 	}
 

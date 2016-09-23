@@ -32,4 +32,9 @@ public class AdminController {
 		String allCategoriesJson = JSON.toJSONString(adminService.getAllCategories());
 		return allCategoriesJson;
 	}
+	
+	@RequestMapping(value="deleteCategory.do")
+	public @ResponseBody String deleteCategory(String id) {
+		return adminService.deleteCategory(id);
+	}
 }

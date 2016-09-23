@@ -1,7 +1,7 @@
 app.controller('NewBlogCtrl', function($scope, $state, $http, $cookies, $window) {
 	
+	$scope.checkSession();
 	$scope.blog = {};
-	
 	var editor = CKEDITOR.replace( "content", {
 		uiColor: "#F5F5F5",
 		extraPlugins: 'autogrow',

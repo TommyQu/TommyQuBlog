@@ -1,7 +1,18 @@
 <div class="container tqb-container">
 		<h2>{{blog.title}}</h2>
 		<hr>
-		<p>Created By: {{blog.createdBy.firstName}} {{blog.createdBy.lastName}} Last Updated on: {{blog.lastUpdatedAt}}</p>
+		<div class="row">
+			<div class="col-md-11">
+				<p>Created By: {{blog.createdBy.firstName}} {{blog.createdBy.lastName}}</p>
+				<p>Last Updated on: {{blog.lastUpdatedAt}}</p>
+			</div>
+			<div class="col-md-1" ng-show="userCookie.id == blog.createdBy.id">
+				<i class="fa fa-pencil-square-o fa-2x edit-icon-i" aria-hidden="true"></i>
+				<i class="fa fa-trash-o fa-2x delete-icon-i" aria-hidden="true" ng-click="deleteBlog(blog.id)"></i>
+			</div>
+		</div>
+		
+		
 		<textarea name="content" id="content" rows="10" cols="80" readonly>
 			{{blog.content}}
 		</textarea>

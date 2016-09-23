@@ -47,6 +47,19 @@ public class BlogRepositoryImpl implements IBlogRepository {
 			return null;
 		}
 	}
+
+	@Override
+	public String deleteBlog(String id) {
+		try {
+			Query query = new Query();
+			query.addCriteria(Criteria.where("id").is(id));
+			mongoTemplate.remove(query, Blog.class, "blog");
+			return "success";
+		} catch (Exception e) {
+			System.out.println(e.getMessage().toString());
+			return "fail";
+		}
+	}
 	
 	
 }

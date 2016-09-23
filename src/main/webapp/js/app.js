@@ -83,4 +83,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 });
 
+//app.factory('checkSessionService', function() {
+//    return {
+//        checkSession: function() {
+//            alert("I'm foo!");
+//        }
+//    };
+//});
+
 var baseUrl = "http://localhost:8080/TommyQuBlog";

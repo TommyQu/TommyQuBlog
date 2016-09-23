@@ -25,4 +25,9 @@ public class AdminServiceImpl implements IAdminService {
 		return adminRepository.getAllCategories();
 	}
 
+	@Override
+	public String deleteCategory(String id) {
+		return adminRepository.deleteCategory(id);
+	}
+
 }

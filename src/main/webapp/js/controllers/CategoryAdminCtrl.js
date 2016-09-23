@@ -37,4 +37,30 @@ app.controller('CategoryAdminCtrl', function($scope, $state, $http, $cookies, $w
                 alert("Error:" + JSON.stringify(error.data));
             });
 	};
+	
+    $scope.deleteCategory = function(id) {
+        if (confirm("Are you sure to delete this category?") == true) {
+            var settings = {
+                    method: 'POST',
+                    url: baseUrl + "/admin/deleteCategory.do",
+                    params: {
+                    	id: id
+                    }
+                }
+                $http(settings).then(function(response) {
+                	if (response.data != null && response.data != "") {
+                		if(response.data == "success") {
+                			alert("Delete category successfully!");
+                			$window.location.reload();
+                		}
+                		else
+                			alert("Error occurs when deleting category!");
+                	} else {
+                    	alert("Network error!");
+                    }
+                }, function(error) {
+                    alert("Error:" + JSON.stringify(error.data));
+                });
+        }
+    };
 });
