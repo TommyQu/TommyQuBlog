@@ -1,1 +1,1 @@
-web: sh target/TommyQuBlog
+web: sh target/bin/webapp
