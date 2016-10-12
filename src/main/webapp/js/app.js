@@ -71,6 +71,16 @@ app.config(function($stateProvider, $urlRouterProvider) {
       }
     })
     
+    .state('app.gallery', {
+      url: "/gallery",
+      views: {
+    	  'mainContent': {
+    		  templateUrl: "view/gallery.html",
+    		  controller: "GalleryCtrl"
+    	  }
+      }
+    })
+    
     .state('app.categoryAdmin', {
         url: "/categoryAdmin",
         views: {
@@ -92,3 +102,4 @@ app.config(function($stateProvider, $urlRouterProvider) {
 //});
 
 var baseUrl = "https://tommyqublog.herokuapp.com";
+//var baseUrl = "http://localhost:8080/tommyqublog";

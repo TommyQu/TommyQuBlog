@@ -3,6 +3,7 @@ package com.tommyqu.blog.repositories.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -31,7 +32,9 @@ public class BlogRepositoryImpl implements IBlogRepository {
 	@Override
 	public List<Blog> getAllBlogs() {
 		try {
-			return mongoTemplate.findAll(Blog.class, "blog");
+			Query query = new Query();
+			query.with(new Sort(Sort.Direction.DESC, "lastUpdatedAt"));
+			return mongoTemplate.find(query, Blog.class, "blog");
 		} catch (Exception e) {
 			System.out.println(e.getMessage().toString());
 			return null;

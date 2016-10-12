@@ -35,6 +35,16 @@
 	margin-left: -100px;
 }
 
+.nav-link-btn {
+	padding-top: 15px;
+	padding-bottom: 15px;	
+}
+
+/*Blog list style*/
+.blog-list-updated-time {
+	color: #9E9E9E;
+}
+
 /*One blog style*/
 .edit-icon-i {
 	    padding-right: 20px;

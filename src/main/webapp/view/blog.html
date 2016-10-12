@@ -10,8 +10,8 @@
         <div class="col-md-9">
             <div class="list-group">
                 <a href class="list-group-item" ng-repeat="blog in blogs" ng-click="toOneBlogPage(blog.id)">
-                    <h3 class="list-group-item-heading">{{blog.title}}</h3>
-                    <p class="list-group-item-text">{{blog.lastUpdatedAt}}</p>
+                    <p class="list-group-item-heading">{{blog.title}}</p>
+                    <p class="list-group-item-text blog-list-updated-time">{{blog.lastUpdatedAt}}</p>
                 </a>
             </div>
         </div>
