@@ -91,4 +91,4 @@ app.config(function($stateProvider, $urlRouterProvider) {
 //    };
 //});
 
-var baseUrl = "http://localhost:8080/TommyQuBlog";
+var baseUrl = "https://tommyqublog.herokuapp.com";
