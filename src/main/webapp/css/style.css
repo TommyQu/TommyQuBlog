@@ -51,11 +51,37 @@
 
 /*One blog style*/
 .edit-icon-i {
-	    padding-right: 20px;
+	padding-right: 20px;
     margin-left: -30px;
     cursor: pointer;
 }
 
 .edit-icon-i:hover, .delete-icon-i:hover {
 	cursor: pointer;
+}
+
+.one-blog-category-p {
+	color: #9E9E9E;
+	margin-bottom: -10px;
+}
+
+/*New gallery style*/
+#trigger-upload {
+    color: white;
+    background-color: #00ABC7;
+    font-size: 14px;
+    padding: 7px 20px;
+    background-image: none;
+}
+
+#fine-uploader-manual-trigger .qq-upload-button {
+    margin-right: 15px;
+}
+
+#fine-uploader-manual-trigger .buttons {
+    width: 36%;
+}
+
+#fine-uploader-manual-trigger .qq-uploader .qq-total-progress-bar-container {
+    width: 60%;
 }

@@ -38,24 +38,24 @@ app.controller('NewBlogCtrl', function($scope, $state, $http, $window) {
 		$scope.blog.categories = $scope.blog.categories.substring(0, $scope.blog.categories.length-1);
 		$scope.blog.content = editor.getData();
         var settings = {
-                method: 'POST',
-                url: baseUrl + "/blog/newBlog.do",
-                params: {
-                	blogJson: JSON.stringify($scope.blog)
-                }
+            method: 'POST',
+            url: baseUrl + "/blog/newBlog.do",
+            params: {
+            	blogJson: JSON.stringify($scope.blog)
             }
-            $http(settings).then(function(response) {
-            	if (response.data != null && response.data != "") {
-                    if (response.data == "success") {
-                    	alert("New blog successfully!");
-                    	$window.history.back();
-                    } else
-                    	alert("Interner server error!");
-            	} else {
-                	alert("Network error!");
-                }
-            }, function(error) {
-                alert("Error:" + JSON.stringify(error.data));
-            });
+        }
+        $http(settings).then(function(response) {
+        	if (response.data != null && response.data != "") {
+                if (response.data == "success") {
+                	alert("New blog successfully!");
+                	$window.history.back();
+                } else
+                	alert("Interner server error!");
+        	} else {
+            	alert("Network error!");
+            }
+        }, function(error) {
+            alert("Error:" + JSON.stringify(error.data));
+        });
 	};
 });

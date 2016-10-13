@@ -80,6 +80,16 @@ app.config(function($stateProvider, $urlRouterProvider) {
     	  }
       }
     })
+   
+    .state('app.newGallery', {
+      url: "/newGallery",
+      views: {
+    	  'mainContent': {
+    		  templateUrl: "view/newGallery.html",
+    		  controller: "NewGalleryCtrl"
+    	  }
+      }
+    })
     
     .state('app.categoryAdmin', {
         url: "/categoryAdmin",
@@ -92,14 +102,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
       }); 
 
 });
-
-//app.factory('checkSessionService', function() {
-//    return {
-//        checkSession: function() {
-//            alert("I'm foo!");
-//        }
-//    };
-//});
 
 var baseUrl = "https://tommyqublog.herokuapp.com";
 //var baseUrl = "http://localhost:8080/tommyqublog";

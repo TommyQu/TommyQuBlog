@@ -44,7 +44,7 @@ public class BlogController {
 	}
 	
 	@RequestMapping(value="getBlogsByCategory.do")
-	public @ResponseBody String getBlogsByCategory(String category, HttpServletRequest request) {
+	public @ResponseBody String getBlogsByCategory(String category) {
 		String allBlogsJson = JSON.toJSONString(blogService.getBlogsByCategory(category));
 		return allBlogsJson;
 	}
