@@ -1,4 +1,4 @@
-var app = angular.module('BlogApp', ['ui.router', 'ngCookies']);
+var app = angular.module('BlogApp', ['ui.router', 'ngCookies', 'isteven-multi-select']);
 app.config(function($stateProvider, $urlRouterProvider) {
   //
   // For any unmatched url, redirect to /state1ico
@@ -23,7 +23,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     })
     
     .state('app.blog', {
-      url: "/blog",
+      url: "/blog/:category",
       views: {
     	  'mainContent': {
     		  templateUrl: "view/blog.html",
@@ -71,6 +71,16 @@ app.config(function($stateProvider, $urlRouterProvider) {
       }
     })
     
+    .state('app.gallery', {
+      url: "/gallery",
+      views: {
+    	  'mainContent': {
+    		  templateUrl: "view/gallery.html",
+    		  controller: "GalleryCtrl"
+    	  }
+      }
+    })
+    
     .state('app.categoryAdmin', {
         url: "/categoryAdmin",
         views: {
@@ -91,4 +101,5 @@ app.config(function($stateProvider, $urlRouterProvider) {
 //    };
 //});
 
-var baseUrl = "http://localhost:8080/TommyQuBlog";
+//var baseUrl = "https://tommyqublog.herokuapp.com";
+var baseUrl = "http://localhost:8080/tommyqublog";

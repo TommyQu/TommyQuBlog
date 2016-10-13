@@ -1,8 +1,11 @@
-app.controller('BlogCtrl', function($scope, $state, $http, $cookies, $window) {
-    $scope.category = {};
+app.controller('BlogCtrl', function($scope, $state, $http, $stateParams, $location) {
+    var currentCategory = $stateParams.category;
+    $scope.getClass = function (path) {
+    	  return ($location.path().substr(10, path.length) === path) ? 'active' : '';
+    };
     var getAllCategoriesSettings = {
         method: 'GET',
-        url: baseUrl + "/admin/getAllCategories.do"
+        url: baseUrl + "/admin/getAllCategories.do",
     }
     $http(getAllCategoriesSettings).then(function(response) {
         if (response.data != null && response.data != "") {
@@ -14,12 +17,15 @@ app.controller('BlogCtrl', function($scope, $state, $http, $cookies, $window) {
         alert("Error:" + JSON.stringify(error.data));
     });
 
-    var getAllBlogsSettings = {
+    var getBlogsByCategorySettings = {
         method: 'GET',
-        url: baseUrl + "/blog/getAllBlogs.do"
+        url: baseUrl + "/blog/getBlogsByCategory.do",
+        params: {
+        	category: currentCategory
+        }
     }
 
-    $http(getAllBlogsSettings).then(function(response) {
+    $http(getBlogsByCategorySettings).then(function(response) {
         if (response.data != null && response.data != "") {
             $scope.blogs = JSON.parse(response.data);
         } else {
@@ -28,10 +34,11 @@ app.controller('BlogCtrl', function($scope, $state, $http, $cookies, $window) {
     }, function(error) {
         alert("Error:" + JSON.stringify(error.data));
     });
-
+    
     $scope.toOneBlogPage = function(id) {
         $state.go('app.oneBlog', {
             "id": id
         });
     };
+    
 });

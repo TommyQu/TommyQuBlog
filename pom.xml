@@ -8,7 +8,7 @@
   <name>TommyQuBlog Maven Webapp</name>
   <url>http://maven.apache.org</url>
   	<properties>
-		<spring.version>4.1.4.RELEASE</spring.version>
+		<spring.version>4.1.8.RELEASE</spring.version>
 		<jackson.version>2.5.0</jackson.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>

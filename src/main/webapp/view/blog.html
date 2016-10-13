@@ -3,8 +3,8 @@
         <div class="col-md-3">
             <h4>Categories</h4>
             <div class="list-group">
-                <a href="#/app/blog" class="list-group-item active">All</a>
-                <a href="#" class="list-group-item" ng-repeat="category in categories">{{category.content}}</a>
+                <a href="#/app/blog/all" class="list-group-item" ng-class="getClass('all')">All</a>
+                <a href="#/app/blog/{{category.content}}" class="list-group-item" ng-class="getClass('{{category.content}}')" ng-repeat="category in categories">{{category.content}}</a>
             </div>
         </div>
         <div class="col-md-9">

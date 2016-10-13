@@ -91,4 +91,9 @@ app.controller('GlobalCtrl', function($scope, $state, $http, $cookies, $window) 
     	$window.location.reload();
     };
     
+    $scope.toBlogPage = function() {
+        $state.go('app.blog', {
+            category: "all"
+        });
+    };
 });

@@ -2,6 +2,7 @@ app.controller('NewBlogCtrl', function($scope, $state, $http, $window) {
 	
 	$scope.checkSession();
 	$scope.blog = {};
+	$scope.blog.categories = "";
 	$scope.inputCategories = [];
 	var editor = CKEDITOR.replace( "content", {
 		uiColor: "#F5F5F5",
@@ -34,7 +35,7 @@ app.controller('NewBlogCtrl', function($scope, $state, $http, $window) {
 		angular.forEach($scope.outputCategories, function(value, key) {    
 			$scope.blog.categories += value.name + ",";
 		});
-		console.log($scope.blog.categories);
+		$scope.blog.categories = $scope.blog.categories.substring(0, $scope.blog.categories.length-1);
 		$scope.blog.content = editor.getData();
         var settings = {
                 method: 'POST',

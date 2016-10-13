@@ -13,7 +13,7 @@ public class Blog {
 	
 	private String title;
 	private String content;
-	private List<Category> categories;
+	private String categories;;
 	private List<Comment> comments;
 	private String createdAt;
 	private User createdBy;
@@ -37,10 +37,10 @@ public class Blog {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public List<Category> getCategories() {
+	public String getCategories() {
 		return categories;
 	}
-	public void setCategories(List<Category> categories) {
+	public void setCategories(String categories) {
 		this.categories = categories;
 	}
 	public List<Comment> getComments() {

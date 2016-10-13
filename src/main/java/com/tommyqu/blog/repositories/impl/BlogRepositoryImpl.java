@@ -30,9 +30,11 @@ public class BlogRepositoryImpl implements IBlogRepository {
 	}
 
 	@Override
-	public List<Blog> getAllBlogs() {
+	public List<Blog> getBlogsByCategory(String category) {
 		try {
 			Query query = new Query();
+			if(category.equalsIgnoreCase("all") == false)
+				query.addCriteria(Criteria.where("categories").in(category));
 			query.with(new Sort(Sort.Direction.DESC, "lastUpdatedAt"));
 			return mongoTemplate.find(query, Blog.class, "blog");
 		} catch (Exception e) {

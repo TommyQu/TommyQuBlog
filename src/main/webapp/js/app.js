@@ -23,7 +23,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     })
     
     .state('app.blog', {
-      url: "/blog",
+      url: "/blog/:category",
       views: {
     	  'mainContent': {
     		  templateUrl: "view/blog.html",

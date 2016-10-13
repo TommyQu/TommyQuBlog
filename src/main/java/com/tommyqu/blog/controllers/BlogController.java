@@ -39,13 +39,13 @@ public class BlogController {
 		
 		User createdBy = (User) request.getSession().getAttribute("user");
 		blog.setCreatedBy(createdBy);
-		
+		blog.setCategories(blogObj.getString("categories"));
 		return blogService.newBlog(blog);
 	}
 	
-	@RequestMapping(value="getAllBlogs.do")
-	public @ResponseBody String getBlogs(HttpServletRequest request) {
-		String allBlogsJson = JSON.toJSONString(blogService.getAllBlogs());
+	@RequestMapping(value="getBlogsByCategory.do")
+	public @ResponseBody String getBlogsByCategory(String category, HttpServletRequest request) {
+		String allBlogsJson = JSON.toJSONString(blogService.getBlogsByCategory(category));
 		return allBlogsJson;
 	}
 

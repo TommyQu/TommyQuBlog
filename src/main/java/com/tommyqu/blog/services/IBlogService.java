@@ -6,7 +6,7 @@ import com.tommyqu.blog.entities.Blog;
 
 public interface IBlogService {
 	public String newBlog(Blog blog);
-	public List<Blog> getAllBlogs();
+	public List<Blog> getBlogsByCategory(String category);
 	public Blog getBlogById(String id);
 	public String deleteBlog(String id);
 }

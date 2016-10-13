@@ -12,10 +12,10 @@
                 <ul class="nav navbar-nav">
                     <li><a href="#/app/home"> Home</a>
                     </li>
-                    <li><a href="#/app/blog">
+                    <li><a href="#" ng-click="toBlogPage()">
 							Blog</a>
                     </li>
-                    <li><a href="#"> Gallery</a>
+                    <li><a href="#/app/gallery"> Gallery</a>
                     </li>
                     <li><a href="#/app/aboutMe"> About Me</a>
                     </li>
@@ -24,21 +24,24 @@
                     <li ng-show="userCookie.id == '57e2c7abadd8589d0a068c89'"><a href="#/app/newBlog"><span
 							class="glyphicon glyphicon-new-window"></span> New Blog</a>
                     </li>
-                    <li ng-show="userCookie == null"><a href="#" data-toggle="modal" data-target="#signUpModal"><span
-							class="glyphicon glyphicon-user"></span> Sign Up</a>
+                    <li ng-show="userCookie == null"><button type="button" class="btn btn-link nav-link-btn" data-toggle="modal" data-target="#signUpModal"><span
+							class="glyphicon glyphicon-user"></span> Sign Up</button>
                     </li>
-                    <li ng-show="userCookie == null"><a href="#" data-toggle="modal" data-target="#loginModal"><span
-							class="glyphicon glyphicon-log-in"></span> Login</a>
+                    <li ng-show="userCookie == null"><button type="button" class="btn btn-link nav-link-btn" data-toggle="modal" data-target="#loginModal"><span
+							class="glyphicon glyphicon-log-in"></span> Login</button>
                     </li>
-                    <li ng-show="userCookie != null"><a href="#" ng-click="signOut()"><span
+                    <li class="dropdown" id="login-userName-li" ng-show="userCookie != null">
+			          <button type="button" class="btn btn-link nav-link-btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{userCookie.firstName}} {{userCookie.lastName}} <span class="caret"></span></button>
+			          <ul class="dropdown-menu">
+	                    <li ng-show="userCookie.id =='57e2c7abadd8589d0a068c89'"><a href="#/app/admin"><span
+								class="glyphicon glyphicon-sunglasses"></span> Admin</a>
+	                    </li>
+	                    <li role="separator" class="divider"></li>
+			            <li ng-show="userCookie != null"><a href="#" ng-click="signOut()"><span
 							class="glyphicon glyphicon-user"></span> Sign Out</a>
-                    </li>
-                    <li ng-show="userCookie.id =='57e2c7abadd8589d0a068c89'"><a href="#/app/admin"><span
-							class="glyphicon glyphicon-sunglasses"></span> Admin</a>
-                    </li>
-                    <li id="login-userName-li"><a href="#"><span></span>
-							{{userCookie.firstName}} {{userCookie.lastName}}</a>
-                    </li>
+                    	</li>
+			          </ul>
+			        </li>
                 </ul>
             </div>
         </div>

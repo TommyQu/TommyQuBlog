@@ -1,8 +1,12 @@
-app.controller('BlogCtrl', function($scope, $state, $http, $cookies, $window) {
+app.controller('BlogCtrl', function($scope, $state, $http, $cookies, $window, $stateParams) {
     $scope.category = {};
+    var currentCategory = $stateParams.category;
     var getAllCategoriesSettings = {
         method: 'GET',
-        url: baseUrl + "/admin/getAllCategories.do"
+        url: baseUrl + "/admin/getAllCategories.do",
+        params: {
+        	category: currentCategory
+        }
     }
     $http(getAllCategoriesSettings).then(function(response) {
         if (response.data != null && response.data != "") {
@@ -14,12 +18,12 @@ app.controller('BlogCtrl', function($scope, $state, $http, $cookies, $window) {
         alert("Error:" + JSON.stringify(error.data));
     });
 
-    var getAllBlogsSettings = {
+    var getBlogsByCategorySettings = {
         method: 'GET',
-        url: baseUrl + "/blog/getAllBlogs.do"
+        url: baseUrl + "/blog/getBlogsByCategory.do"
     }
 
-    $http(getAllBlogsSettings).then(function(response) {
+    $http(getBlogsByCategorySettings).then(function(response) {
         if (response.data != null && response.data != "") {
             $scope.blogs = JSON.parse(response.data);
         } else {
