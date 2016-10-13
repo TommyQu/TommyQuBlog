@@ -1,4 +1,4 @@
-var app = angular.module('BlogApp', ['ui.router', 'ngCookies']);
+var app = angular.module('BlogApp', ['ui.router', 'ngCookies', 'isteven-multi-select']);
 app.config(function($stateProvider, $urlRouterProvider) {
   //
   // For any unmatched url, redirect to /state1ico

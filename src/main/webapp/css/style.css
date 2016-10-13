@@ -40,6 +40,10 @@
 	padding-bottom: 15px;	
 }
 
+.bold-p {
+	font-weight: 700;	
+}
+
 /*Blog list style*/
 .blog-list-updated-time {
 	color: #9E9E9E;

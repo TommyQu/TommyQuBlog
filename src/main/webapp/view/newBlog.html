@@ -6,6 +6,18 @@
                 <input type="text" class="form-control" id="title" placeholder="Title" ng-model="blog.title" required>
 			</div>
 			<div class="form-group">
+			<p class="bold-p">Category</p>
+			<div     
+			    isteven-multi-select
+			    input-model="inputCategories"
+			    output-model="outputCategories"
+			    button-label="icon name"
+			    item-label="icon name maker"
+			    tick-property="ticked"
+			>
+			</div>
+			</div>
+			<div class="form-group">
 				<label for="content">Content</label>
 				<textarea id="content" name="content" ng-model="blog.content" required>
 				</textarea>
