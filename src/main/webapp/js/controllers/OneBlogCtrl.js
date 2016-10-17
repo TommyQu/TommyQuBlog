@@ -20,7 +20,8 @@ app.controller('OneBlogCtrl', function($scope, $state, $http, $stateParams, $win
         		$scope.blog = JSON.parse(response.data);
         	    var e = CKEDITOR.replace("content", {
         			uiColor: "#F5F5F5",
-        			removePlugins: 'resize'
+        			removePlugins: 'resize',
+        			height: '600px'
         		});
         		e.setData($scope.blog.content);
         	} else {
