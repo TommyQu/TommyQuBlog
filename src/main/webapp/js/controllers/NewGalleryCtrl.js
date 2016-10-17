@@ -2,12 +2,12 @@ app.controller('NewGalleryCtrl', function($scope, $state, $http, $window) {
 	
 	$scope.checkSession();
 	$scope.gallery = {};
-	
+    
     var manualUploader = new qq.FineUploader({
         element: document.getElementById('fine-uploader-manual-trigger'),
         template: 'qq-template-manual-trigger',
         request: {
-            endpoint: baseUrl+'/gallery/uploadImages.do'
+            endpoint: 'https://api.cloudinary.com/v1_1/tommyqu/image/upload'
         },
         thumbnails: {
             placeholders: {
@@ -27,6 +27,7 @@ app.controller('NewGalleryCtrl', function($scope, $state, $http, $window) {
     qq(document.getElementById("trigger-upload")).attach("click", function() {
         manualUploader.uploadStoredFiles();
     });
+    
     
     $scope.newGallery = function() {
         var settings = {

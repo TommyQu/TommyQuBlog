@@ -59,4 +59,21 @@ public class BlogController {
 	public @ResponseBody String deleteBlog(String id) {
 		return blogService.deleteBlog(id);
 	}
+	
+	@RequestMapping(value="updateBlog.do")
+	public @ResponseBody String updateBlog(String blogJson, HttpServletRequest request) {
+		JSONObject blogObj = JSON.parseObject(blogJson);
+		Blog blog = new Blog();
+		blog.setId(blogObj.getString("id"));
+		blog.setTitle(blogObj.getString("title"));
+		blog.setContent(blogObj.getString("content"));
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date date = new Date();
+
+		blog.setLastUpdatedAt(sdf.format(date));
+		
+//		blog.setCategories(blogObj.getString("categories"));
+		return blogService.updateBlog(blog);
+	}
 }

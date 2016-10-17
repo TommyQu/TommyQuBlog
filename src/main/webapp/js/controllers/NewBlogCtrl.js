@@ -4,12 +4,9 @@ app.controller('NewBlogCtrl', function($scope, $state, $http, $window) {
 	$scope.blog = {};
 	$scope.blog.categories = "";
 	$scope.inputCategories = [];
+
 	var editor = CKEDITOR.replace( "content", {
 		uiColor: "#F5F5F5",
-		extraPlugins: 'autogrow',
-		autoGrow_minHeight: 200,
-		autoGrow_maxHeight: 600,
-		autoGrow_bottomSpace: 50,
 		removePlugins: 'resize'
 	});
 	
@@ -38,7 +35,7 @@ app.controller('NewBlogCtrl', function($scope, $state, $http, $window) {
 		$scope.blog.categories = $scope.blog.categories.substring(0, $scope.blog.categories.length-1);
 		$scope.blog.content = editor.getData();
         var settings = {
-            method: 'POST',
+            method: 'GET',
             url: baseUrl + "/blog/newBlog.do",
             params: {
             	blogJson: JSON.stringify($scope.blog)
@@ -48,7 +45,9 @@ app.controller('NewBlogCtrl', function($scope, $state, $http, $window) {
         	if (response.data != null && response.data != "") {
                 if (response.data == "success") {
                 	alert("New blog successfully!");
-                	$window.history.back();
+                	$state.go("app.blog", {
+                		params: "all"
+                	}, {reload: true})
                 } else
                 	alert("Interner server error!");
         	} else {

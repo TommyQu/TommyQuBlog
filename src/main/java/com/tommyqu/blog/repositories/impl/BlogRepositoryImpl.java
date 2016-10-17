@@ -7,6 +7,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 
 import com.tommyqu.blog.entities.Blog;
@@ -62,6 +63,22 @@ public class BlogRepositoryImpl implements IBlogRepository {
 			return "success";
 		} catch (Exception e) {
 			System.out.println(e.getMessage().toString());
+			return "fail";
+		}
+	}
+
+	@Override
+	public String updateBlog(Blog blog) {
+		try {
+			Query query = new Query();
+			query.addCriteria(Criteria.where("id").is(blog.getId()));
+			Update update = new Update();
+			update.set("title", blog.getTitle());
+			update.set("content", blog.getContent());
+			update.set("lastUpdatedAt", blog.getLastUpdatedAt());
+			mongoTemplate.findAndModify(query, update, Blog.class);
+			return "success";
+		} catch (Exception e) {
 			return "fail";
 		}
 	}

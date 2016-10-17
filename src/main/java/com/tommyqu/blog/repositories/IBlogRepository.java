@@ -10,4 +10,5 @@ public interface IBlogRepository {
 	public List<Blog> getBlogsByCategory(String category);
 	public Blog getBlogById(String id);
 	public String deleteBlog(String id);
+	public String updateBlog(Blog blog);
 }

@@ -1,0 +1,31 @@
+<div class="container tqb-container">
+		<h2>Update Blog:</h2>
+		<form name="updateBlogForm" ng-submit="updateBlog(updateBlogForm)">
+			<div class="form-group">
+			    <label for="title">Title</label>
+                <input type="text" class="form-control" id="title" placeholder="Title" ng-model="blog.title" required>
+			</div>
+			<div class="form-group">
+			<p class="bold-p">Category</p>
+			<div     
+			    isteven-multi-select
+			    input-model="inputCategories"
+			    output-model="outputCategories"
+			    button-label="icon name"
+			    item-label="icon name maker"
+			    tick-property="ticked"
+			>
+			</div>
+			</div>
+			<div class="form-group">
+				<label for="content">Content</label>
+				<textarea id="content" name="content" ng-model="blog.content" required>
+				</textarea>
+			</div>
+			<div class="form-group">
+				<div class="col-md-6">
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</div>
+			</div>
+		</form>
+</div>

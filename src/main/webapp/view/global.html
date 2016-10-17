@@ -33,12 +33,15 @@
                     <li class="dropdown" id="login-userName-li" ng-show="userCookie != null">
 			          <button type="button" class="btn btn-link nav-link-btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{userCookie.firstName}} {{userCookie.lastName}} <span class="caret"></span></button>
 			          <ul class="dropdown-menu">
+			          	<li ng-show="userCookie != null"><a href="#/app/profile"><span
+							class="glyphicon glyphicon-user"></span> Profile</a>
+                    	</li>
 	                    <li ng-show="userCookie.id =='57e2c7abadd8589d0a068c89'"><a href="#/app/admin"><span
 								class="glyphicon glyphicon-sunglasses"></span> Admin</a>
 	                    </li>
 	                    <li role="separator" class="divider"></li>
 			            <li ng-show="userCookie != null"><a href="#" ng-click="signOut()"><span
-							class="glyphicon glyphicon-user"></span> Sign Out</a>
+							class="glyphicon glyphicon-log-out"></span> Sign Out</a>
                     	</li>
 			          </ul>
 			        </li>

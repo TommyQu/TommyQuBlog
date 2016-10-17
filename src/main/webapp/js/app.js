@@ -1,10 +1,8 @@
 var app = angular.module('BlogApp', ['ui.router', 'ngCookies', 'isteven-multi-select']);
 app.config(function($stateProvider, $urlRouterProvider) {
-  //
-  // For any unmatched url, redirect to /state1ico
+
   $urlRouterProvider.otherwise("app/home");
-  //
-  // Now set up the states
+
   $stateProvider
   .state('app', {
     url: "/app",
@@ -61,12 +59,32 @@ app.config(function($stateProvider, $urlRouterProvider) {
       }
     })
 
+    .state('app.profile', {
+      url: "/profile",
+      views: {
+    	  'mainContent': {
+    		  templateUrl: "view/profile.html",
+    		  controller: "ProfileCtrl"
+    	  }
+      }
+    })
+    
     .state('app.newBlog', {
       url: "/newBlog",
       views: {
     	  'mainContent': {
     		  templateUrl: "view/newBlog.html",
     		  controller: "NewBlogCtrl"
+    	  }
+      }
+    })
+    
+    .state('app.updateBlog', {
+      url: "/updateBlog/:id",
+      views: {
+    	  'mainContent': {
+    		  templateUrl: "view/updateBlog.html",
+    		  controller: "UpdateBlogCtrl"
     	  }
       }
     })

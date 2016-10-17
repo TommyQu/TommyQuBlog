@@ -46,8 +46,10 @@ public class UserController {
 	
 	@RequestMapping(value="checkSession.do")
 	public @ResponseBody String checkSession(String email, HttpServletRequest request) {
-		if(request.getSession().getAttribute("user") == null)
+		User user = (User)request.getSession().getAttribute("user");
+		if(user == null || user.getEmail().equalsIgnoreCase(email) == false)
 			return "fail";
 		return "success";
 	}
+
 }
