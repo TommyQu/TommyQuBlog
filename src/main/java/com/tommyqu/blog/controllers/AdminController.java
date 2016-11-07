@@ -3,6 +3,7 @@ package com.tommyqu.blog.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -12,6 +13,7 @@ import com.tommyqu.blog.entities.Category;
 import com.tommyqu.blog.entities.User;
 import com.tommyqu.blog.services.IAdminService;
 
+@CrossOrigin
 @Controller
 @RequestMapping(value="admin")
 public class AdminController {

@@ -19,6 +19,7 @@ import com.tommyqu.blog.entities.Category;
 import com.tommyqu.blog.entities.User;
 import com.tommyqu.blog.services.IBlogService;
 
+@CrossOrigin
 @Controller
 @RequestMapping(value="blog")
 public class BlogController {
@@ -44,7 +45,6 @@ public class BlogController {
 		return blogService.newBlog(blog);
 	}
 	
-	@CrossOrigin
 	@RequestMapping(value="getBlogsByCategory.do")
 	public @ResponseBody String getBlogsByCategory(String category) {
 		String allBlogsJson = JSON.toJSONString(blogService.getBlogsByCategory(category));
