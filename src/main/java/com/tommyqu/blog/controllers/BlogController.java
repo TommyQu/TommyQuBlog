@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -43,6 +44,7 @@ public class BlogController {
 		return blogService.newBlog(blog);
 	}
 	
+	@CrossOrigin
 	@RequestMapping(value="getBlogsByCategory.do")
 	public @ResponseBody String getBlogsByCategory(String category) {
 		String allBlogsJson = JSON.toJSONString(blogService.getBlogsByCategory(category));
