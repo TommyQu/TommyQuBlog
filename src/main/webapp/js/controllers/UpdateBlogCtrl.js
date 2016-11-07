@@ -41,7 +41,8 @@ app.controller('UpdateBlogCtrl', function($scope, $state, $http, $window, $state
         		$scope.blog = JSON.parse(response.data);
         	    e = CKEDITOR.replace("content", {
         			uiColor: "#F5F5F5",
-        			removePlugins: 'resize'
+        			removePlugins: 'resize',
+        			height: '600px'
         		});
         		e.setData($scope.blog.content);
         	} else {
