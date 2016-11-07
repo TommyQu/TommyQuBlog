@@ -1,5 +1,6 @@
 <div class="container tqb-container">
 		<h2>{{blog.title}}</h2>
+		<p class="one-blog-category-p">{{blog.categories}}</p>
 		<hr>
 		<div class="row">
 			<div class="col-md-11">
@@ -7,14 +8,12 @@
 				<p>Last Updated on: {{blog.lastUpdatedAt}}</p>
 			</div>
 			<div class="col-md-1" ng-show="userCookie.id == blog.createdBy.id">
-				<i class="fa fa-pencil-square-o fa-2x edit-icon-i" aria-hidden="true"></i>
+				<i class="fa fa-pencil-square-o fa-2x edit-icon-i" aria-hidden="true" ng-click="toUpdateBlogPage(blog.id)"></i>
 				<i class="fa fa-trash-o fa-2x delete-icon-i" aria-hidden="true" ng-click="deleteBlog(blog.id)"></i>
 			</div>
 		</div>
 		
-		
 		<textarea name="content" id="content" rows="10" cols="80" readonly>
-			{{blog.content}}
 		</textarea>
 		<br>
 		<h3>Comments</h3>

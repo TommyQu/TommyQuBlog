@@ -1,4 +1,4 @@
-app.controller('CategoryAdminCtrl', function($scope, $state, $http, $cookies, $window) {
+app.controller('CategoryAdminCtrl', function($scope, $state, $http, $window) {
 	$scope.category = {};
     var getAllCategoriesSettings = {
             method: 'GET',

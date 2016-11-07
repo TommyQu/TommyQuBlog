@@ -7,7 +7,7 @@ app.controller('GlobalCtrl', function($scope, $state, $http, $cookies, $window) 
                 method: 'POST',
                 url: baseUrl + "/user/checkSession.do",
                 params: {
-                    email: $scope.user.email,
+                    email: $scope.userCookie.email,
                 }
             }
         $http(settings).then(function(response) {
@@ -46,8 +46,10 @@ app.controller('GlobalCtrl', function($scope, $state, $http, $cookies, $window) 
             		var data = JSON.parse(response.data);
             		var userCookie = {
 	    				"id": data.id,
+	    				"email": data.email,
 	    				"firstName": data.firstName,
 	    				"lastName": data.lastName,
+	    				"bio": data.bio,
 	    				"avatar": data.avatar
             		};
             		$cookies.putObject('userCookie', userCookie);
@@ -88,12 +90,7 @@ app.controller('GlobalCtrl', function($scope, $state, $http, $cookies, $window) 
     $scope.signOut = function() {
     	$scope.checkSession();
     	$cookies.remove("userCookie");
-    	$window.location.reload();
+    	$state.go("app.home", {}, {reload: true});
     };
     
-    $scope.toBlogPage = function() {
-        $state.go('app.blog', {
-            category: "all"
-        });
-    };
 });
