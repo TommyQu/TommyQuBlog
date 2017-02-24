@@ -44,6 +44,14 @@
 	font-weight: 700;	
 }
 
+.loading-progress-bar-div {
+	height: 40px;
+}
+
+.loading-p {
+	margin-top: 10px;
+}
+
 /*Blog list style*/
 .blog-list-updated-time {
 	color: #9E9E9E;

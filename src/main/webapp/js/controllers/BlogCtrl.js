@@ -1,4 +1,6 @@
-app.controller('BlogCtrl', function($scope, $state, $http, $stateParams, $location) {
+app.controller('BlogCtrl', function($scope, $state, $http, $stateParams, $location, $timeout) {
+	$scope.params = {};
+	$scope.params.isLoading = true;
     var currentCategory = $stateParams.category;
     $scope.getClass = function (path) {
     	  return ($location.path().substr(10, path.length) === path) ? 'active' : '';
@@ -10,10 +12,17 @@ app.controller('BlogCtrl', function($scope, $state, $http, $stateParams, $locati
     $http(getAllCategoriesSettings).then(function(response) {
         if (response.data != null && response.data != "") {
             $scope.categories = JSON.parse(response.data);
+            $scope.$watch("$viewContentLoaded", function() {
+                $timeout(function () {
+                	$scope.params.isLoading = false;
+                }, 500);
+            });
         } else {
+        	$scope.params.isLoading = false;
             alert("Network error!");
         }
     }, function(error) {
+    	$scope.params.isLoading = false;
         alert("Error:" + JSON.stringify(error.data));
     });
 
@@ -29,9 +38,11 @@ app.controller('BlogCtrl', function($scope, $state, $http, $stateParams, $locati
         if (response.data != null && response.data != "") {
             $scope.blogs = JSON.parse(response.data);
         } else {
+        	$scope.params.isLoading = false;
             alert("Network error!");
         }
     }, function(error) {
+    	$scope.params.isLoading = false;
         alert("Error:" + JSON.stringify(error.data));
     });
     

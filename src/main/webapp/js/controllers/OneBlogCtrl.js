@@ -1,4 +1,7 @@
-app.controller('OneBlogCtrl', function($scope, $state, $http, $stateParams, $window) {
+app.controller('OneBlogCtrl', function($scope, $state, $http, $stateParams, $window, $timeout) {
+	
+	$scope.params = {};
+	$scope.params.isLoading = true;
 	
 	var height;
 	
@@ -24,10 +27,15 @@ app.controller('OneBlogCtrl', function($scope, $state, $http, $stateParams, $win
         			height: '600px'
         		});
         		e.setData($scope.blog.content);
+                $timeout(function () {
+                	$scope.params.isLoading = false;
+                }, 500);
         	} else {
+        		$scope.params.isLoading = false;
             	alert("Network error!");
             }
         }, function(error) {
+        	$scope.params.isLoading = false;
             alert("Error:" + JSON.stringify(error.data));
         });
 

@@ -9,7 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
@@ -27,13 +30,9 @@ public class BlogController {
 	@Autowired
 	IBlogService blogService;
 	
-	@RequestMapping(value="newBlog.do")
-	public @ResponseBody String newBlog(String blogJson, HttpServletRequest request) {
-		JSONObject blogObj = JSON.parseObject(blogJson);
-		Blog blog = new Blog();
-		blog.setTitle(blogObj.getString("title"));
-		blog.setContent(blogObj.getString("content"));
-		
+	@RequestMapping(value="newBlog.do", method=RequestMethod.POST)
+	public @ResponseBody String newBlog(@RequestBody Blog blog, HttpServletRequest request) {
+		System.out.println(JSON.toJSONString(blog));
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
 		blog.setCreatedAt(sdf.format(date));
@@ -41,7 +40,7 @@ public class BlogController {
 		
 		User createdBy = (User) request.getSession().getAttribute("user");
 		blog.setCreatedBy(createdBy);
-		blog.setCategories(blogObj.getString("categories"));
+
 		return blogService.newBlog(blog);
 	}
 	
@@ -62,13 +61,8 @@ public class BlogController {
 		return blogService.deleteBlog(id);
 	}
 	
-	@RequestMapping(value="updateBlog.do")
-	public @ResponseBody String updateBlog(String blogJson, HttpServletRequest request) {
-		JSONObject blogObj = JSON.parseObject(blogJson);
-		Blog blog = new Blog();
-		blog.setId(blogObj.getString("id"));
-		blog.setTitle(blogObj.getString("title"));
-		blog.setContent(blogObj.getString("content"));
+	@RequestMapping(value="updateBlog.do", method=RequestMethod.POST)
+	public @ResponseBody String updateBlog(@RequestBody Blog blog, HttpServletRequest request) {
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();

@@ -61,9 +61,7 @@ app.controller('UpdateBlogCtrl', function($scope, $state, $http, $window, $state
         var settings = {
             method: 'POST',
             url: baseUrl + "/blog/updateBlog.do",
-            params: {
-            	blogJson: JSON.stringify($scope.blog)
-            }
+            data: $scope.blog
         }
         $http(settings).then(function(response) {
         	if (response.data != null && response.data != "") {

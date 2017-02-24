@@ -121,5 +121,5 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 });
 
-//var baseUrl = "https://tommyqublog.herokuapp.com";
-var baseUrl = "http://localhost:8080/tommyqublog";
+var baseUrl = "https://tommyqublog.herokuapp.com";
+//var baseUrl = "http://localhost:8080/tommyqublog";

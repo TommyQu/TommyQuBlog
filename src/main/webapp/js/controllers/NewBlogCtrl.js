@@ -35,11 +35,9 @@ app.controller('NewBlogCtrl', function($scope, $state, $http, $window) {
 		$scope.blog.categories = $scope.blog.categories.substring(0, $scope.blog.categories.length-1);
 		$scope.blog.content = editor.getData();
         var settings = {
-            method: 'GET',
+            method: 'POST',
             url: baseUrl + "/blog/newBlog.do",
-            params: {
-            	blogJson: JSON.stringify($scope.blog)
-            }
+            data: $scope.blog
         }
         $http(settings).then(function(response) {
         	if (response.data != null && response.data != "") {
