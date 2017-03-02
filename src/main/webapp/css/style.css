@@ -73,6 +73,19 @@
 	margin-bottom: -10px;
 }
 
+.float-right-btn {
+	float: right;	
+}
+
+.comment-created-at-p {
+	color: #BDBDBD;
+    float: right;
+}
+
+.comment-hr {
+	margin-top: 30px;	
+}
+
 /*New gallery style*/
 #trigger-upload {
     color: white;

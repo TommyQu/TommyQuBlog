@@ -39,4 +39,10 @@ public class AdminController {
 	public @ResponseBody String deleteCategory(String id) {
 		return adminService.deleteCategory(id);
 	}
+	
+	@RequestMapping(value="getAllUsers.do")
+	public @ResponseBody String getAllUsers() {
+		String usersJson = JSON.toJSONString(adminService.getAllUsers());
+		return usersJson;
+	}
 }

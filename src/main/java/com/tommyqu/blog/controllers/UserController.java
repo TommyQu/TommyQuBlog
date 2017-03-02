@@ -43,6 +43,7 @@ public class UserController {
 		user.setLastName(userObj.getString("lastName"));
 		user.setBio(userObj.getString("bio"));
 		user.setAvatar("avatar");
+		user.setStatus("A");
 		return userService.signUp(user);
 	}
 	
@@ -53,5 +54,6 @@ public class UserController {
 			return "fail";
 		return "success";
 	}
+	
 
 }

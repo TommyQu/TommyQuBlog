@@ -59,6 +59,16 @@ public class AdminRepositoryImpl implements IAdminRepository {
 		}
 	}
 
+	@Override
+	public List<User> getAllUsers() {
+		try {
+			return mongoTemplate.findAll(User.class, "user");
+		} catch (Exception e) {
+			System.out.println(e.getMessage().toString());
+			return null;
+		}
+	}
+
 
 
 }

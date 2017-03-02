@@ -12,6 +12,7 @@ public class Comment {
 	private String content;
 	private String createdAt;
 	private User createdBy;
+	private String parentId;
 
 	public String getId() {
 		return id;
@@ -36,6 +37,12 @@ public class Comment {
 	}
 	public void setCreatedBy(User createdBy) {
 		this.createdBy = createdBy;
+	}
+	public String getParentId() {
+		return parentId;
+	}
+	public void setParentId(String parentId) {
+		this.parentId = parentId;
 	}
 	
 	

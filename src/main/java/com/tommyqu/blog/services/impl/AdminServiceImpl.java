@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.tommyqu.blog.entities.Category;
+import com.tommyqu.blog.entities.User;
 import com.tommyqu.blog.repositories.IAdminRepository;
 import com.tommyqu.blog.services.IAdminService;
 
@@ -28,6 +29,11 @@ public class AdminServiceImpl implements IAdminService {
 	@Override
 	public String deleteCategory(String id) {
 		return adminRepository.deleteCategory(id);
+	}
+
+	@Override
+	public List<User> getAllUsers() {
+		return adminRepository.getAllUsers();
 	}
 
 }

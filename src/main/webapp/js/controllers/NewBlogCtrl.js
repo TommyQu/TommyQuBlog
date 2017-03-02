@@ -46,6 +46,8 @@ app.controller('NewBlogCtrl', function($scope, $state, $http, $window) {
                 	$state.go("app.blog", {
                 		params: "all"
                 	}, {reload: true})
+                } else if(response.data == "no_session") {
+                	alert(NO_SESSION_MSG);
                 } else
                 	alert("Interner server error!");
         	} else {

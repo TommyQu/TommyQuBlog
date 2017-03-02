@@ -14,7 +14,6 @@ public class Blog {
 	private String title;
 	private String content;
 	private String categories;;
-	private List<Comment> comments;
 	private String createdAt;
 	private User createdBy;
 	private String lastUpdatedAt;
@@ -42,12 +41,6 @@ public class Blog {
 	}
 	public void setCategories(String categories) {
 		this.categories = categories;
-	}
-	public List<Comment> getComments() {
-		return comments;
-	}
-	public void setComments(List<Comment> comments) {
-		this.comments = comments;
 	}
 	public String getCreatedAt() {
 		return createdAt;

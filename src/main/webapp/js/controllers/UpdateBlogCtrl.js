@@ -68,6 +68,8 @@ app.controller('UpdateBlogCtrl', function($scope, $state, $http, $window, $state
                 if (response.data == "success") {
                 	alert("Update blog successfully!");
                 	$window.history.back();
+                } else if (response.data == "no_session") {
+                	alert(NO_SESSION_MSG);
                 } else
                 	alert("Interner server error!");
         	} else {

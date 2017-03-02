@@ -21,27 +21,31 @@ import com.tommyqu.blog.entities.Blog;
 import com.tommyqu.blog.entities.Category;
 import com.tommyqu.blog.entities.User;
 import com.tommyqu.blog.services.IBlogService;
+import com.tommyqu.blog.utils.TQBUtilities;
 
 @CrossOrigin
 @Controller
 @RequestMapping(value="blog")
 public class BlogController {
 
+	private static final String NO_SESSION_MSG = "no_session";
+	
 	@Autowired
 	IBlogService blogService;
 	
 	@RequestMapping(value="newBlog.do", method=RequestMethod.POST)
 	public @ResponseBody String newBlog(@RequestBody Blog blog, HttpServletRequest request) {
-		System.out.println(JSON.toJSONString(blog));
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		Date date = new Date();
-		blog.setCreatedAt(sdf.format(date));
-		blog.setLastUpdatedAt(sdf.format(date));
 		
 		User createdBy = (User) request.getSession().getAttribute("user");
-		blog.setCreatedBy(createdBy);
+		if(createdBy == null)
+			return NO_SESSION_MSG;
+		else {
+			blog.setCreatedAt(TQBUtilities.getCurrentTime());
+			blog.setLastUpdatedAt(TQBUtilities.getCurrentTime());
+			blog.setCreatedBy(createdBy);
+			return blogService.newBlog(blog);
+		}
 
-		return blogService.newBlog(blog);
 	}
 	
 	@RequestMapping(value="getBlogsByCategory.do")
@@ -63,13 +67,13 @@ public class BlogController {
 	
 	@RequestMapping(value="updateBlog.do", method=RequestMethod.POST)
 	public @ResponseBody String updateBlog(@RequestBody Blog blog, HttpServletRequest request) {
+		User createdBy = (User) request.getSession().getAttribute("user");
+		if(createdBy == null)
+			return NO_SESSION_MSG;
+		else {
+			blog.setLastUpdatedAt(TQBUtilities.getCurrentTime());
+			return blogService.updateBlog(blog);
+		}
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		Date date = new Date();
-
-		blog.setLastUpdatedAt(sdf.format(date));
-		
-//		blog.setCategories(blogObj.getString("categories"));
-		return blogService.updateBlog(blog);
 	}
 }

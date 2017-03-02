@@ -15,7 +15,7 @@ app.controller('GlobalCtrl', function($scope, $state, $http, $cookies, $window) 
             	if(response.data == "fail") {
                 	$cookies.remove("userCookie");
                 	$scope.userCookie = null;
-                	alert("Your session expires, please login again!");
+                	alert(SESSION_EXPIRE_MSG);
                 	$state.go("app.home");
                 	return false;
             	}

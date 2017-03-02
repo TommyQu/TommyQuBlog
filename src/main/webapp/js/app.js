@@ -48,16 +48,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
     	  }
       }
     })
-    
-    .state('app.admin', {
-      url: "/admin",
-      views: {
-    	  'mainContent': {
-    		  templateUrl: "view/admin.html",
-    		  controller: "AdminCtrl"
-    	  }
-      }
-    })
 
     .state('app.profile', {
       url: "/profile",
@@ -109,17 +99,38 @@ app.config(function($stateProvider, $urlRouterProvider) {
       }
     })
     
+    .state('app.admin', {
+      url: "/admin",
+      views: {
+    	  'mainContent': {
+    		  templateUrl: "view/admin/admin.html",
+    		  controller: "AdminCtrl"
+    	  }
+      }
+    })
+    
     .state('app.categoryAdmin', {
         url: "/categoryAdmin",
         views: {
       	  'mainContent': {
-      		  templateUrl: "view/categoryAdmin.html",
+      		  templateUrl: "view/admin/categoryAdmin.html",
       		  controller: "CategoryAdminCtrl"
       	  }
         }
-      }); 
+      })
+      
+      .state('app.userAdmin', {
+          url: "/userAdmin",
+          views: {
+        	  'mainContent': {
+        		  templateUrl: "view/admin/userAdmin.html",
+        		  controller: "UserAdminCtrl"
+        	  }
+          }
+        }); 
 
 });
 
+var NO_SESSION_MSG = "Your session expires, please login again!";
 var baseUrl = "https://tommyqublog.herokuapp.com";
 //var baseUrl = "http://localhost:8080/tommyqublog";
