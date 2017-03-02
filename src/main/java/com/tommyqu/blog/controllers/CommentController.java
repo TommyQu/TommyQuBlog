@@ -1,10 +1,5 @@
 package com.tommyqu.blog.controllers;
 
-import static org.hamcrest.CoreMatchers.nullValue;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -17,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
-import com.tommyqu.blog.entities.Blog;
 import com.tommyqu.blog.entities.Comment;
 import com.tommyqu.blog.entities.User;
 import com.tommyqu.blog.services.ICommentService;

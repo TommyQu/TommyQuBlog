@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.tommyqu.blog.entities.Blog;
 import com.tommyqu.blog.entities.Gallery;
 import com.tommyqu.blog.entities.User;
 import com.tommyqu.blog.services.IGalleryService;
