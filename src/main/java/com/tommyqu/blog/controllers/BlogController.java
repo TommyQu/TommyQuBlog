@@ -1,5 +1,7 @@
 package com.tommyqu.blog.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,15 +44,13 @@ public class BlogController {
 	}
 	
 	@RequestMapping(value="getBlogsByCategory.do")
-	public @ResponseBody String getBlogsByCategory(String category) {
-		String allBlogsJson = JSON.toJSONString(blogService.getBlogsByCategory(category));
-		return allBlogsJson;
+	public @ResponseBody List<Blog> getBlogsByCategory(String category) {
+		return blogService.getBlogsByCategory(category);
 	}
 
 	@RequestMapping(value="getOneBlog.do")
-	public @ResponseBody String getOneBlog(String id) {
-		String blogJson = JSON.toJSONString(blogService.getBlogById(id));
-		return blogJson;
+	public @ResponseBody Blog getOneBlog(String id) {
+		return blogService.getBlogById(id);
 	}
 	
 	@RequestMapping(value="deleteBlog.do")

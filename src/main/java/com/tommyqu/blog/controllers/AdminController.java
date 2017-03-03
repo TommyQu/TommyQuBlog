@@ -1,5 +1,7 @@
 package com.tommyqu.blog.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -28,9 +30,8 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="getAllCategories.do")
-	public @ResponseBody String getAllCategories() {
-		String allCategoriesJson = JSON.toJSONString(adminService.getAllCategories());
-		return allCategoriesJson;
+	public @ResponseBody List<Category> getAllCategories() {
+		return adminService.getAllCategories();
 	}
 	
 	@RequestMapping(value="deleteCategory.do")

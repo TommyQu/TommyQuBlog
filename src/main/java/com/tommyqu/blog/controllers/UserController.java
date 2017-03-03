@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -33,14 +34,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value="signUp.do")
-	public @ResponseBody String signUp(String userJson) {
-		User user = new User();
-		JSONObject userObj = JSON.parseObject(userJson);
-		user.setEmail(userObj.getString("email"));
-		user.setPwd(userObj.getString("pwd"));
-		user.setFirstName(userObj.getString("firstName"));
-		user.setLastName(userObj.getString("lastName"));
-		user.setBio(userObj.getString("bio"));
+	public @ResponseBody String signUp(@RequestBody User user) {
 		user.setAvatar("avatar");
 		user.setStatus("A");
 		return userService.signUp(user);

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.tommyqu.blog.entities.Blog;
 import com.tommyqu.blog.entities.Category;
+import com.tommyqu.blog.entities.Comment;
 import com.tommyqu.blog.repositories.IBlogRepository;
 
 @Repository
@@ -60,6 +61,9 @@ public class BlogRepositoryImpl implements IBlogRepository {
 			Query query = new Query();
 			query.addCriteria(Criteria.where("id").is(id));
 			mongoTemplate.remove(query, Blog.class, "blog");
+			Query commentQuery = new Query();
+			commentQuery.addCriteria(Criteria.where("parentId").is(id));
+			mongoTemplate.remove(commentQuery, Comment.class, "comment");
 			return "success";
 		} catch (Exception e) {
 			System.out.println(e.getMessage().toString());

@@ -39,7 +39,7 @@ public class UserRepositoryImpl implements IUserRepository {
 			query.addCriteria(Criteria.where("email").is(user.getEmail()));
 //			Email has been registered!
 			if(mongoTemplate.findOne(query, User.class) != null)
-				return "fail";
+				return "exist";
 			else {
 				mongoTemplate.insert(user, "user");
 				return "success";

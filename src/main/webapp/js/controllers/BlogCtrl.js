@@ -1,49 +1,30 @@
-app.controller('BlogCtrl', function($scope, $state, $http, $stateParams, $location, $timeout) {
+app.controller('BlogCtrl', function($scope, $state, $stateParams, $location, $timeout, BlogService, CategoryService) {
 	$scope.params = {};
 	$scope.params.isLoading = true;
     var currentCategory = $stateParams.category;
     $scope.getClass = function (path) {
     	  return ($location.path().substr(10, path.length) === path) ? 'active' : '';
     };
-    var getAllCategoriesSettings = {
-        method: 'GET',
-        url: baseUrl + "/admin/getAllCategories.do",
-    }
-    $http(getAllCategoriesSettings).then(function(response) {
-        if (response.data != null && response.data != "") {
-            $scope.categories = JSON.parse(response.data);
-            $scope.$watch("$viewContentLoaded", function() {
-                $timeout(function () {
-                	$scope.params.isLoading = false;
-                }, 500);
-            });
-        } else {
-        	$scope.params.isLoading = false;
-            alert("Network error!");
-        }
-    }, function(error) {
-    	$scope.params.isLoading = false;
-        alert("Error:" + JSON.stringify(error.data));
+
+    CategoryService.getAllCategories().then(function(response) {
+    	if(response.status == "200") {
+            $scope.categories = response.data;
+    	} else {
+    		alert("Error: "+response.status+", "+response.statusText);
+    	}
     });
-
-    var getBlogsByCategorySettings = {
-        method: 'GET',
-        url: baseUrl + "/blog/getBlogsByCategory.do",
-        params: {
-        	category: currentCategory
-        }
-    }
-
-    $http(getBlogsByCategorySettings).then(function(response) {
-        if (response.data != null && response.data != "") {
-            $scope.blogs = JSON.parse(response.data);
-        } else {
-        	$scope.params.isLoading = false;
-            alert("Network error!");
-        }
-    }, function(error) {
-    	$scope.params.isLoading = false;
-        alert("Error:" + JSON.stringify(error.data));
+    
+    BlogService.getBlogsByCategory(currentCategory).then(function(response) {
+    	if(response.status == "200") {
+    		$scope.blogs = response.data;
+    	} else {
+    		alert("Error: "+response.status+", "+response.statusText);
+    	}
+        $scope.$watch("$viewContentLoaded", function() {
+            $timeout(function () {
+            	$scope.params.isLoading = false;
+            }, 500);
+        });
     });
     
     $scope.toOneBlogPage = function(id) {
