@@ -7,10 +7,11 @@
 			<button type="button" class="btn btn-success" ng-show="userCookie.id == '57e2c7abadd8589d0a068c89'" ui-sref="app.newGallery">New Gallery</button>
 		</div>
 	</div>
+	<br>
 	<div class="row">
-	  <div class="col-sm-6 col-md-4" ng-repeat="gallery in galleries">
+	  <div class="col-sm-6 col-md-3" ng-repeat="gallery in galleries">
 	    <div class="thumbnail">
-	      <img src="img/person.png" alt="Gallery Picture">
+	      <img src="{{gallery.imgUrls[0]}}" alt="Gallery Picture" width="100%">
 	      <div class="caption">
 	        <h3>{{gallery.title}}</h3>
 	        <p>{{gallery.description}}</p>

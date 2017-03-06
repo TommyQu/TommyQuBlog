@@ -26,7 +26,7 @@ public class AdminRepositoryImpl implements IAdminRepository {
 			query.addCriteria(Criteria.where("content").is(category.getContent()));
 //			Category has been registered!
 			if(mongoTemplate.findOne(query, Category.class) != null)
-				return "fail";
+				return "exist";
 			else {
 				mongoTemplate.insert(category, "category");
 				return "success";

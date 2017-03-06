@@ -13,4 +13,19 @@ app.service('UserService', function($http) {
             });
     };
 
+    this.login = function(email, pwd) {
+        var settings = {
+                method: 'POST',
+                url: baseUrl + "/user/login.do",
+                params: {
+                    email: email,
+                    pwd: pwd,
+                }
+            };
+            return $http(settings).then(function(response) {
+            	return response;
+            }, function(error) {
+                return error;
+            });
+    };
 });

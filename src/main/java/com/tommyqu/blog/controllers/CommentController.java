@@ -1,6 +1,8 @@
 package com.tommyqu.blog.controllers;
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +36,7 @@ public class CommentController {
 		if(createdBy == null)
 			return NO_SESSION_MSG;
 		else {
+			createdBy.setPwd(null);
 			comment.setCreatedAt(TQBUtilities.getCurrentTime());
 			comment.setCreatedBy(createdBy);
 			return commentService.newComment(comment);
@@ -41,8 +44,7 @@ public class CommentController {
 	}
 	
 	@RequestMapping(value="getCommentsByBlogId.do", method=RequestMethod.GET)
-	public @ResponseBody String getCommentsByBlogId(String blogId, HttpServletRequest request) {
-		String blogJson = JSON.toJSONString(commentService.getCommentsByBlogId(blogId));
-		return blogJson;
+	public @ResponseBody List<Comment> getCommentsByBlogId(String blogId, HttpServletRequest request) {
+		return commentService.getCommentsByBlogId(blogId);
 	}
 }

@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
@@ -22,10 +24,7 @@ public class AdminController {
 	IAdminService adminService;
 	
 	@RequestMapping(value="newCategory.do")
-	public @ResponseBody String newCategory(String categoryJson) {
-		JSONObject categoryObj = JSON.parseObject(categoryJson);
-		Category category = new Category();
-		category.setContent(categoryObj.getString("content"));
+	public @ResponseBody String newCategory(@RequestBody Category category) {
 		return adminService.newCategory(category);
 	}
 	
@@ -34,7 +33,7 @@ public class AdminController {
 		return adminService.getAllCategories();
 	}
 	
-	@RequestMapping(value="deleteCategory.do")
+	@RequestMapping(value="deleteCategory.do", method=RequestMethod.DELETE)
 	public @ResponseBody String deleteCategory(String id) {
 		return adminService.deleteCategory(id);
 	}

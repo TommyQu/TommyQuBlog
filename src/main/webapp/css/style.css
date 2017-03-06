@@ -4,7 +4,9 @@
 }
 
 .tqb-container {
-	margin-top: 30px;	
+	margin-top: 30px;
+	padding-left: 50px;
+	padding-right: 50px;
 }
 
 .tqb-footer {

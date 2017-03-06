@@ -35,6 +35,7 @@ public class BlogController {
 		if(createdBy == null)
 			return NO_SESSION_MSG;
 		else {
+			createdBy.setPwd(null);
 			blog.setCreatedAt(TQBUtilities.getCurrentTime());
 			blog.setLastUpdatedAt(TQBUtilities.getCurrentTime());
 			blog.setCreatedBy(createdBy);

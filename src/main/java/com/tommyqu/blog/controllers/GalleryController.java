@@ -1,13 +1,17 @@
 package com.tommyqu.blog.controllers;
 
+import static org.hamcrest.CoreMatchers.nullValue;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -16,6 +20,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.tommyqu.blog.entities.Gallery;
 import com.tommyqu.blog.entities.User;
 import com.tommyqu.blog.services.IGalleryService;
+import com.tommyqu.blog.utils.TQBUtilities;
 
 @CrossOrigin
 @Controller
@@ -26,17 +31,12 @@ public class GalleryController {
 	IGalleryService galleryService;
 	
 	@RequestMapping(value="newGallery.do")
-	public @ResponseBody String newGallery(String galleryJson, HttpServletRequest request) {
-		JSONObject galleryObj = JSON.parseObject(galleryJson);
-		Gallery gallery = new Gallery();
-		gallery.setTitle(galleryObj.getString("title"));
-		gallery.setDescription(galleryObj.getString("description"));
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		Date date = new Date();
-		gallery.setCreadtedOn(sdf.format(date));
-		gallery.setLastUpdatedOn(sdf.format(date));
+	public @ResponseBody String newGallery(@RequestBody Gallery gallery, HttpServletRequest request) {
+		gallery.setCreadtedOn(TQBUtilities.getCurrentTime());
+		gallery.setLastUpdatedOn(TQBUtilities.getCurrentTime());
 		
 		User createdBy = (User) request.getSession().getAttribute("user");
+		createdBy.setPwd(null);
 		gallery.setCreatedBy(createdBy);
 
 		return galleryService.newGallery(gallery);
@@ -50,8 +50,7 @@ public class GalleryController {
 	}
 	
 	@RequestMapping(value="getAllGalleries.do")
-	public @ResponseBody String getAllGalleries() {
-		String allGalleriesJson = JSON.toJSONString(galleryService.getAllGalleries());
-		return allGalleriesJson;
+	public @ResponseBody List<Gallery> getAllGalleries() {
+		return galleryService.getAllGalleries();
 	}
 }

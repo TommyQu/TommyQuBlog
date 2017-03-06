@@ -1,4 +1,4 @@
-app.controller('NewBlogCtrl', function($scope, $state, $http, $window, BlogService, CategoryService) {
+app.controller('NewBlogCtrl', function($scope, $state, $window, BlogService, CategoryService) {
 	
 	$scope.checkSession();
 	$scope.blog = {};
@@ -33,9 +33,10 @@ app.controller('NewBlogCtrl', function($scope, $state, $http, $window, BlogServi
 	    	if(response.status == "200") {
                 if (response.data == "success") {
                 	alert("New blog successfully!");
-                	$state.go("app.blog", {
-                		params: "all"
-                	}, {reload: true})
+                	$window.history.back();
+//                	$state.go("app.blog", {
+//                		params: "all"
+//                	}, {reload: true})
                 } else if(response.data == "no_session") {
                 	alert(NO_SESSION_MSG);
                 } else

@@ -1,4 +1,4 @@
-app.controller('NewGalleryCtrl', function($scope, $state, $http, $window) {
+app.controller('NewGalleryCtrl', function($scope, $state, $window, GalleryService) {
 	
 	$scope.checkSession();
 	$scope.gallery = {};
@@ -30,25 +30,16 @@ app.controller('NewGalleryCtrl', function($scope, $state, $http, $window) {
     
     
     $scope.newGallery = function() {
-        var settings = {
-            method: 'POST',
-            url: baseUrl + "/gallery/newGallery.do",
-            params: {
-            	galleryJson: JSON.stringify($scope.gallery)
-            }
-        }
-        $http(settings).then(function(response) {
-        	if (response.data != null && response.data != "") {
+    	GalleryService.newGallery($scope.gallery).then(function(response){
+        	if(response.status == "200") {
                 if (response.data == "success") {
                 	alert("New gallery successfully!");
                 	$window.history.back();
                 } else
                 	alert("Interner server error!");
         	} else {
-            	alert("Network error!");
-            }
-        }, function(error) {
-            alert("Error:" + JSON.stringify(error.data));
-        });
+        		alert("Error: "+response.status+", "+response.statusText);
+        	}
+    	});
     };
 });
