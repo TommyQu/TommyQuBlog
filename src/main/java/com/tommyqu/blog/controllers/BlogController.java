@@ -70,4 +70,9 @@ public class BlogController {
 		}
 		
 	}
+	
+	@RequestMapping(value="getBlogsBySearchText.do")
+	public @ResponseBody List<Blog> getBlogsBySearchText(String searchText) {
+		return blogService.getBlogsBySearchText(searchText);
+	}
 }

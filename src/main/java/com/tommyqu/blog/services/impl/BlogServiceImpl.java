@@ -40,4 +40,9 @@ public class BlogServiceImpl implements IBlogService {
 		return blogRepository.updateBlog(blog);
 	}
 
+	@Override
+	public List<Blog> getBlogsBySearchText(String searchText) {
+		return blogRepository.getBlogsBySearchText(searchText);
+	}
+
 }

@@ -4,6 +4,19 @@
 	    <p class="loading-p">Loading data...</p>
 	  </div>
 	</div>
+	<div class="row">
+	<form>
+  <div class="col-lg-6" style="float:right;">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Search for..." ng-model="params.searchText">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="submit" ng-click="searchBlog()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+      </span>
+    </div>
+  </div>
+  </form>
+</div>
+<br>
     <div class="row">
         <div class="col-md-3">
             <h4>Categories</h4>

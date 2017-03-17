@@ -10,4 +10,5 @@ public interface IBlogService {
 	public Blog getBlogById(String id);
 	public String deleteBlog(String id);
 	public String updateBlog(Blog blog);
+	public List<Blog> getBlogsBySearchText(String searchText);
 }

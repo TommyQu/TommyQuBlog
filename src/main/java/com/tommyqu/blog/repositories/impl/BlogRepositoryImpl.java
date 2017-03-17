@@ -86,6 +86,20 @@ public class BlogRepositoryImpl implements IBlogRepository {
 			return "fail";
 		}
 	}
+
+	@Override
+	public List<Blog> getBlogsBySearchText(String searchText) {
+		try {
+			Query query = new Query();
+			if(searchText != null && searchText != "")
+				query.addCriteria(Criteria.where("title").regex(searchText, "i")).addCriteria(Criteria.where("content").regex(searchText, "i"));
+			query.with(new Sort(Sort.Direction.DESC, "lastUpdatedAt"));
+			return mongoTemplate.find(query, Blog.class, "blog");
+		} catch (Exception e) {
+			System.out.println(e.getMessage().toString());
+			return null;
+		}
+	}
 	
 	
 }

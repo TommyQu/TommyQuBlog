@@ -70,4 +70,19 @@ app.service('BlogService', function($http) {
             	return error;
             });
     };
+    
+    this.getBlogsBySearchText = function(searchText) {
+        var settings = {
+                method: 'GET',
+                url: baseUrl + "/blog/getBlogsBySearchText.do",
+                params: {
+                	searchText: searchText
+                }
+            }
+            return $http(settings).then(function(response) {
+            	return response;
+            }, function(error) {
+            	return error;
+            });
+    };
 });
