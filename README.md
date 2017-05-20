@@ -1,7 +1,7 @@
 # TommyQuBlog
 Personal Blog
 
-https://tommyqublog.herokuapp.com/
+http://blog.tommyqu.com/
 
 Front-end: AngularJS, Bootstrap
 
