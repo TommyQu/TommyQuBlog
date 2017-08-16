@@ -32,16 +32,24 @@ app.controller('UpdateBlogCtrl', function($scope, $state, $http, $window, $state
     			height: '600px'
     		});
     		e.setData($scope.blog.content);
+            var categories = $scope.blog.categories.split(",");
+            angular.forEach($scope.inputCategories, function(value, key) {
+            	for(var i = 0; i < categories.length; i++) {
+	            	if(categories[i] === value.name)
+	            		value.ticked = true;
+            	}
+            });
     	} else {
     		alert("Error: "+response.status+", "+response.statusText);
     	}
     });
     
 	$scope.updateBlog = function() {
-//		angular.forEach($scope.outputCategories, function(value, key) {    
-//			$scope.blog.categories += value.name + ",";
-//		});
-//		$scope.blog.categories = $scope.blog.categories.substring(0, $scope.blog.categories.length-1);
+		$scope.blog.categories = "";
+		angular.forEach($scope.outputCategories, function(value, key) {    
+			$scope.blog.categories += value.name + ",";
+		});
+		$scope.blog.categories = $scope.blog.categories.substring(0, $scope.blog.categories.length-1);
 		$scope.blog.content = e.getData();
 		BlogService.updateBlog($scope.blog).then(function(response) {
 	    	if(response.status == "200") {

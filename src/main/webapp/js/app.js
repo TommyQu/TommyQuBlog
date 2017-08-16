@@ -133,5 +133,5 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 var NO_SESSION_MSG = "Your session expires, please login again!";
 //var baseUrl = "https://tommyqublog.herokuapp.com";
-//var baseUrl = "/tommyqublog";
-var baseUrl = "";
+var baseUrl = "/tommyqublog";
+//var baseUrl = "";

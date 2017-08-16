@@ -1,39 +1,49 @@
-app.controller('BlogCtrl', function($scope, $state, $http, $stateParams, $location) {
+app.controller('BlogCtrl', function($scope, $state, $stateParams, $location, $timeout, BlogService, CategoryService) {
+	$scope.params = {};
+	$scope.params.isLoading = true;
     var currentCategory = $stateParams.category;
     $scope.getClass = function (path) {
     	  return ($location.path().substr(10, path.length) === path) ? 'active' : '';
     };
-    var getAllCategoriesSettings = {
-        method: 'GET',
-        url: baseUrl + "/admin/getAllCategories.do",
-    }
-    $http(getAllCategoriesSettings).then(function(response) {
-        if (response.data != null && response.data != "") {
-            $scope.categories = JSON.parse(response.data);
-        } else {
-            alert("Network error!");
-        }
-    }, function(error) {
-        alert("Error:" + JSON.stringify(error.data));
-    });
 
-    var getBlogsByCategorySettings = {
-        method: 'GET',
-        url: baseUrl + "/blog/getBlogsByCategory.do",
-        params: {
-        	category: currentCategory
-        }
-    }
-
-    $http(getBlogsByCategorySettings).then(function(response) {
-        if (response.data != null && response.data != "") {
-            $scope.blogs = JSON.parse(response.data);
-        } else {
-            alert("Network error!");
-        }
-    }, function(error) {
-        alert("Error:" + JSON.stringify(error.data));
+    CategoryService.getAllCategories().then(function(response) {
+    	if(response.status == "200") {
+            $scope.categories = response.data;
+    	} else {
+    		alert("Error: "+response.status+", "+response.statusText);
+    	}
     });
+    
+    BlogService.getBlogsByCategory(currentCategory).then(function(response) {
+    	if(response.status == "200") {
+    		$scope.blogs = response.data;
+    		console.log($scope.blogs);
+    	} else {
+    		alert("Error: "+response.status+", "+response.statusText);
+    	}
+        $scope.$watch("$viewContentLoaded", function() {
+            $timeout(function () {
+            	$scope.params.isLoading = false;
+            }, 500);
+        });
+    });
+    
+    $scope.searchBlog = function() {
+    	if($scope.params.searchText == null || $scope.params.searchText == "undefined" || $scope.params.searchText == "")
+    		return;
+        BlogService.getBlogsBySearchText($scope.params.searchText).then(function(response) {
+        	if(response.status == "200") {
+        		$scope.blogs = response.data;
+        	} else {
+        		alert("Error: "+response.status+", "+response.statusText);
+        	}
+            $scope.$watch("$viewContentLoaded", function() {
+                $timeout(function () {
+                	$scope.params.isLoading = false;
+                }, 500);
+            });
+        });
+    };
     
     $scope.toOneBlogPage = function(id) {
         $state.go('app.oneBlog', {

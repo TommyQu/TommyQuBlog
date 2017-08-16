@@ -1,4 +1,9 @@
 <div class="container tqb-container">
+	   	<div class="progress loading-progress-bar-div" ng-show="params.isLoading">
+		  <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuenow="100" aria-valuemax="100" style="width:100%">
+		    <p class="loading-p">Loading data...</p>
+		  </div>
+		</div>
 		<h2>{{blog.title}}</h2>
 		<p class="one-blog-category-p">{{blog.categories}}</p>
 		<hr>
@@ -12,10 +17,33 @@
 				<i class="fa fa-trash-o fa-2x delete-icon-i" aria-hidden="true" ng-click="deleteBlog(blog.id)"></i>
 			</div>
 		</div>
-		
 		<textarea name="content" id="content" rows="10" cols="80" readonly>
 		</textarea>
 		<br>
-		<h3>Comments</h3>
-		<p ng-show="blog.comments == null">No comments yet.</p>
+		<br>
+		<form ng-submit="newComment()">
+		    <div class="form-group">
+		    	<label for="comment">Comment:</label>
+		      <textarea class="form-control" rows="5" ng-model="comment.content" id="comment" required></textarea>
+		    </div>
+		    <button type="submit" class="btn btn-primary float-right-btn">Submit</button>
+		</form>
+		<br>
+		<br>
+		<h4>{{comments.length}} comments</h4>
+		<hr>
+		<p ng-show="comments.length <= 0">No comments yet.</p>
+		<div ng-show="comments.length > 0">
+			<div class="media" ng-repeat="comment in comments">
+			    <div class="media-left">
+			    	<img src="img/user.png" class="media-object" style="width:40px">
+			    </div>
+			    <div class="media-body">
+			      <p class="media-heading"><b>{{comment.createdBy.firstName}} {{comment.createdBy.lastName}}</b></p>
+			      <p>{{comment.content}}</p>
+			    </div>
+			    <p class="comment-created-at-p">{{comment.createdAt}}</p>
+			    <hr class="comment-hr">
+		  </div>
+		</div>
 </div>

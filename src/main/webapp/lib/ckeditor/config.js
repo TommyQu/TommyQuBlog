@@ -8,7 +8,9 @@ CKEDITOR.editorConfig = function( config ) {
 	// For complete reference see:
 	// http://docs.ckeditor.com/#!/api/CKEDITOR.config
 
-	config.extraPlugins = 'codesnippet,autogrow';
+	config.extraPlugins = 'codesnippet,autogrow,dropoff';
+//	config.removePlugins = 'dragdrop';
+	
 	// The toolbar groups arrangement, optimized for two toolbar rows.
 	config.toolbarGroups = [
 		{ name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
@@ -39,4 +41,6 @@ CKEDITOR.editorConfig = function( config ) {
 	
 	config.autoGrow_minHeight = 250;
 	config.autoGrow_maxHeight = 600;
+	
+	config.codeSnippet_theme = 'monokai_sublime';
 };

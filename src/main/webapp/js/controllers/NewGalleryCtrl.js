@@ -7,7 +7,7 @@ app.controller('NewGalleryCtrl', function($scope, $state, $window, GalleryServic
         element: document.getElementById('fine-uploader-manual-trigger'),
         template: 'qq-template-manual-trigger',
         request: {
-            endpoint: 'https://api.cloudinary.com/v1_1/tommyqu/image/upload'
+            endpoint: 'https://api.cloudinary.com/v1_1/tommyqu/image/a.png'
         },
         thumbnails: {
             placeholders: {

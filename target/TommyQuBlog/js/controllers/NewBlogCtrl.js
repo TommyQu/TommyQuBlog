@@ -1,4 +1,4 @@
-app.controller('NewBlogCtrl', function($scope, $state, $http, $window) {
+app.controller('NewBlogCtrl', function($scope, $state, $window, BlogService, CategoryService) {
 	
 	$scope.checkSession();
 	$scope.blog = {};
@@ -9,52 +9,41 @@ app.controller('NewBlogCtrl', function($scope, $state, $http, $window) {
 		uiColor: "#F5F5F5",
 		removePlugins: 'resize'
 	});
-	
-    var getAllCategoriesSettings = {
-            method: 'GET',
-            url: baseUrl + "/admin/getAllCategories.do"
-    }
-    $http(getAllCategoriesSettings).then(function(response) {
-        if (response.data != null && response.data != "") {
-            var categories = JSON.parse(response.data);
+    
+    CategoryService.getAllCategories().then(function(response) {
+    	if(response.status == "200") {
+    		var categories = response.data;
             for(var i = 0; i < Object.keys(categories).length; i++) {
             	var category = {name:categories[i].content, ticked: false};
             	$scope.inputCategories.push(category);
             }
-        } else {
-            alert("Network error!");
-        }
-    }, function(error) {
-        alert("Error:" + JSON.stringify(error.data));
+    	} else {
+    		alert("Error: "+response.status+", "+response.statusText);
+    	}
     });
     
 	$scope.newBlog = function() {
-		angular.forEach($scope.outputCategories, function(value, key) {    
+		angular.forEach($scope.outputCategories, function(value, key) {
 			$scope.blog.categories += value.name + ",";
 		});
 		$scope.blog.categories = $scope.blog.categories.substring(0, $scope.blog.categories.length-1);
 		$scope.blog.content = editor.getData();
-        var settings = {
-            method: 'POST',
-            url: baseUrl + "/blog/newBlog.do",
-            data: {
-            	blogJson: JSON.stringify($scope.blog)
-            }
-        }
-        $http(settings).then(function(response) {
-        	if (response.data != null && response.data != "") {
+		
+	    BlogService.newBlog($scope.blog).then(function(response) {
+	    	if(response.status == "200") {
                 if (response.data == "success") {
                 	alert("New blog successfully!");
-                	$state.go("app.blog", {
-                		params: "all"
-                	}, {reload: true})
+                	$window.history.back();
+//                	$state.go("app.blog", {
+//                		params: "all"
+//                	}, {reload: true})
+                } else if(response.data == "no_session") {
+                	alert(NO_SESSION_MSG);
                 } else
-                	alert("Interner server error!");
-        	} else {
-            	alert("Network error!");
-            }
-        }, function(error) {
-            alert("Error:" + JSON.stringify(error.data));
-        });
+                	alert("Error: "+response.status+", "+response.statusText);
+	    	} else {
+	    		alert("Error: "+response.status+", "+response.statusText);
+	    	}
+	    });
 	};
 });

@@ -79,6 +79,7 @@ public class BlogRepositoryImpl implements IBlogRepository {
 			Update update = new Update();
 			update.set("title", blog.getTitle());
 			update.set("content", blog.getContent());
+			update.set("categories", blog.getCategories());
 			update.set("lastUpdatedAt", blog.getLastUpdatedAt());
 			mongoTemplate.findAndModify(query, update, Blog.class);
 			return "success";
