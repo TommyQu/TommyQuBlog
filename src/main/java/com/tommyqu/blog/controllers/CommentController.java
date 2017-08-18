@@ -4,6 +4,7 @@ package com.tommyqu.blog.controllers;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,11 +30,13 @@ public class CommentController {
 	ICommentService commentService;
 	
 	@RequestMapping(value="newComment.do", method=RequestMethod.POST)
-	public @ResponseBody String newComment(@RequestBody Comment comment, HttpServletRequest request) {
+	public @ResponseBody String newComment(@RequestBody Comment comment, HttpServletRequest request, HttpServletResponse response) {
 		
 		User createdBy = (User) request.getSession().getAttribute("user");
-		if(createdBy == null)
-			return NO_SESSION_MSG;
+		if(createdBy == null) {
+			response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+			return null;
+		}
 		else {
 			createdBy.setPwd(null);
 			comment.setCreatedAt(TQBUtilities.getCurrentTime());

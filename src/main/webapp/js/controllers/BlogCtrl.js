@@ -17,7 +17,6 @@ app.controller('BlogCtrl', function($scope, $state, $stateParams, $location, $ti
     BlogService.getBlogsByCategory(currentCategory).then(function(response) {
     	if(response.status == "200") {
     		$scope.blogs = response.data;
-    		console.log($scope.blogs);
     	} else {
     		alert("Error: "+response.status+", "+response.statusText);
     	}

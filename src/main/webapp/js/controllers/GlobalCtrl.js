@@ -32,22 +32,20 @@ app.controller('GlobalCtrl', function($scope, $state, $http, $cookies, $window, 
     $scope.userLogin = function() {
     	UserService.login($scope.user.email, $scope.user.pwd).then(function(response){
 	    	if(response.status == "200") {
-                if (response.data == "fail") {
-                	alert("Incorrect username or password!");
-                } else {
-            		var data = JSON.parse(response.data);
-            		var userCookie = {
-	    				"id": data.id,
-	    				"email": data.email,
-	    				"firstName": data.firstName,
-	    				"lastName": data.lastName,
-	    				"bio": data.bio,
-	    				"avatar": data.avatar
-            		};
-            		$cookies.putObject('userCookie', userCookie);
-            		angular.element('#loginModal').modal('hide');
-            		$window.location.reload();
-                }
+        		var data = response.data;
+        		var userCookie = {
+    				"id": data.id,
+    				"email": data.email,
+    				"firstName": data.firstName,
+    				"lastName": data.lastName,
+    				"bio": data.bio,
+    				"avatar": data.avatar
+        		};
+        		$cookies.putObject('userCookie', userCookie);
+        		angular.element('#loginModal').modal('hide');
+        		$window.location.reload();
+	    	} else if(response.status == "422") {
+	    		alert("Incorrect username or password!");
 	    	} else {
 	    		alert("Error: "+response.status+", "+response.statusText);
 	    	}
@@ -57,13 +55,10 @@ app.controller('GlobalCtrl', function($scope, $state, $http, $cookies, $window, 
     $scope.signUp = function() {
 	    UserService.signUp($scope.user).then(function(response) {
 	    	if(response.status == "200") {
-                if (response.data == "success") {
-                	alert("Sign up successfully!");
-                	angular.element('#signUpModal').modal('hide');
-                } else if(response.data == "exist")
-                	alert("Email has already exists!");
-                else
-                	alert("Internal Server Error!");
+            	alert("Sign up successfully!");
+            	angular.element('#signUpModal').modal('hide');
+	    	} else if(response.status == "409") {
+	    		alert("Email has already exists!");
 	    	} else {
 	    		alert("Error: "+response.status+", "+response.statusText);
 	    	}
@@ -71,9 +66,14 @@ app.controller('GlobalCtrl', function($scope, $state, $http, $cookies, $window, 
     };
     
     $scope.signOut = function() {
-    	$scope.checkSession();
-    	$cookies.remove("userCookie");
-    	$state.go("app.home", {}, {reload: true});
+	    UserService.signOut().then(function(response) {
+	    	if(response.status == "200") {
+	        	$cookies.remove("userCookie");
+	        	$state.go("app.home", {}, {reload: true});
+	    	} else {
+	    		alert("Error: "+response.status+", "+response.statusText);
+	    	}
+	    });
     };
     
 });

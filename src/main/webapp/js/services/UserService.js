@@ -28,4 +28,16 @@ app.service('UserService', function($http) {
                 return error;
             });
     };
+    
+    this.signOut = function() {
+        var settings = {
+                method: 'GET',
+                url: baseUrl + "/user/signOut.do"
+            };
+            return $http(settings).then(function(response) {
+            	return response;
+            }, function(error) {
+                return error;
+            });
+    };
 });
