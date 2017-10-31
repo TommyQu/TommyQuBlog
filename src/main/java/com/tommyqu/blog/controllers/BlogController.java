@@ -3,6 +3,7 @@ package com.tommyqu.blog.controllers;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,11 +30,13 @@ public class BlogController {
 	IBlogService blogService;
 	
 	@RequestMapping(value="newBlog.do", method=RequestMethod.POST)
-	public @ResponseBody String newBlog(@RequestBody Blog blog, HttpServletRequest request) {
+	public @ResponseBody String newBlog(@RequestBody Blog blog, HttpServletRequest request, HttpServletResponse response) {
 		
 		User createdBy = (User) request.getSession().getAttribute("user");
-		if(createdBy == null)
+		if(createdBy == null) {
+			response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 			return NO_SESSION_MSG;
+		}
 		else {
 			createdBy.setPwd(null);
 			blog.setCreatedAt(TQBUtilities.getCurrentTime());
@@ -60,10 +63,12 @@ public class BlogController {
 	}
 	
 	@RequestMapping(value="updateBlog.do", method=RequestMethod.POST)
-	public @ResponseBody String updateBlog(@RequestBody Blog blog, HttpServletRequest request) {
+	public @ResponseBody String updateBlog(@RequestBody Blog blog, HttpServletRequest request, HttpServletResponse response) {
 		User createdBy = (User) request.getSession().getAttribute("user");
-		if(createdBy == null)
+		if(createdBy == null) {
+			response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 			return NO_SESSION_MSG;
+		}
 		else {
 			blog.setLastUpdatedAt(TQBUtilities.getCurrentTime());
 			return blogService.updateBlog(blog);

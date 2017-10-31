@@ -53,13 +53,10 @@ app.controller('UpdateBlogCtrl', function($scope, $state, $http, $window, $state
 		$scope.blog.content = e.getData();
 		BlogService.updateBlog($scope.blog).then(function(response) {
 	    	if(response.status == "200") {
-	            if (response.data == "success") {
-	            	alert("Update blog successfully!");
-	            	$window.history.back();
-	            } else if (response.data == "no_session") {
-	            	alert(NO_SESSION_MSG);
-	            } else
-	            	alert("Interner server error!");
+            	alert("Update blog successfully!");
+            	$window.history.back();
+	    	} else if(response.status == "401") {
+	    		alert(NO_SESSION_MSG);
 	    	} else {
 	    		alert("Error: "+response.status+", "+response.statusText);
 	    	}

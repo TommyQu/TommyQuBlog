@@ -1,34 +1,32 @@
-app.controller('NewGalleryCtrl', function($scope, $state, $window, GalleryService) {
+app.controller('NewGalleryCtrl', function($scope, $state, $window, FileUploader, GalleryService) {
 	
 	$scope.checkSession();
 	$scope.gallery = {};
-    
-    var manualUploader = new qq.FineUploader({
-        element: document.getElementById('fine-uploader-manual-trigger'),
-        template: 'qq-template-manual-trigger',
-        request: {
-            endpoint: 'https://api.cloudinary.com/v1_1/tommyqu/image/a.png'
-        },
-        thumbnails: {
-            placeholders: {
-                waitingPath: '/source/placeholders/waiting-generic.png',
-                notAvailablePath: '/source/placeholders/not_available-generic.png'
-            }
-        },
-        validation: {
-        	allowedExtensions: ['jpeg', 'jpg', 'png'],
-        	itemLimit: 10,
-        	sizeLimit: 5120000
-        },
-        autoUpload: false,
-        debug: true
+
+	var uploader = $scope.uploader = new FileUploader({});
+
+    uploader.filters.push({
+        name: 'asyncFilter',
+        fn: function(item /*{File|FileLikeObject}*/, options, deferred) {
+            setTimeout(deferred.resolve, 10);
+        }
     });
 
-    qq(document.getElementById("trigger-upload")).attach("click", function() {
-        manualUploader.uploadStoredFiles();
+	uploader.filters.push({
+	    'name': 'enforceMaxFileSize',
+	    'fn': function (item) {
+	        return item.size <= 20971520; // 10 MiB to bytes
+	    }
+	});
+	
+    angular.element(document).ready(function () {
+  	  document.getElementById("upload_widget_opener").addEventListener("click", function() {
+		    cloudinary.openUploadWidget({ cloud_name: 'tommyqu', upload_preset: 'lstuuhqk'}, 
+		      function(error, result) { console.log(error, result) });
+		  }, false);
     });
-    
-    
+
+	  
     $scope.newGallery = function() {
     	GalleryService.newGallery($scope.gallery).then(function(response){
         	if(response.status == "200") {

@@ -1,4 +1,4 @@
-var app = angular.module('BlogApp', ['ui.router', 'ngCookies', 'isteven-multi-select']);
+var app = angular.module('BlogApp', ['ui.router', 'ngCookies', 'isteven-multi-select', 'angularFileUpload']);
 app.config(function($stateProvider, $urlRouterProvider) {
 
   $urlRouterProvider.otherwise("app/home");

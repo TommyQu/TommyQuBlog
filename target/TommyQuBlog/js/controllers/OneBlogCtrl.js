@@ -68,16 +68,13 @@ app.controller('OneBlogCtrl', function($scope, $state, $http, $stateParams, $win
     	$scope.comment.parentId = $scope.blog.id;
         CommentService.newComment($scope.comment).then(function(response) {
         	if(response.status == "200") {
-        		if(response.data == "success") {
-                	alert("New comment successfully!");
-                	getComments();
-        		}
-        		else if(response.data == "no_session") {
-                	$cookies.remove("userCookie");
-                	alert(NO_SESSION_MSG);
-                	$window.location.reload();
-                } else
-                	alert("Interner server error!");
+            	alert("New comment successfully!");
+            	$scope.comment.content = "";
+            	getComments();
+        	} else if(response.status == "401") {
+            	$cookies.remove("userCookie");
+            	alert(NO_SESSION_MSG);
+            	$window.location.reload();
         	} else {
         		alert("Error: "+response.status+", "+response.statusText);
         	}
